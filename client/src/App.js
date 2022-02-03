@@ -1,17 +1,15 @@
-import { Routes } from "react-router-dom";
+import HeaderNav from "./components/HeaderNav/HeaderNav";
+import { Layout } from 'antd';
+import FooterS from "./components/FooterS/FooterS";
+import ContentS from "./components/ContentS/ContentS";
 
 function App() {
   return (
-  <div>
-    <Routes>
-      {/* <Route path="/" element={<MainPage />} />
-      <Route path="/" element={<MainPage />} />
-      <Route path="/" element={<MainPage />} />
-      <Route path="/" element={<MainPage />} />
-      <Route path="/" element={<MainPage />} />
-      <Route path="/" element={<MainPage />} /> */}
-    </Routes>
-    </div>
+    <Layout className="layout">
+      <HeaderNav />
+      <ContentS />
+      <FooterS/>
+    </Layout>
   );
 }
 
