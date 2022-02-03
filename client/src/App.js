@@ -1,9 +1,11 @@
 import { Routes } from "react-router-dom";
+import FormC from "./components/FormC/FormC";
 
 function App() {
   return (
   <div>
-    <Routes>
+    <FormC/>
+
       {/* <Route path="/" element={<MainPage />} />
       <Route path="/" element={<MainPage />} />
       <Route path="/" element={<MainPage />} />
