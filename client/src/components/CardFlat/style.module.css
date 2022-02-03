@@ -1,0 +1,8 @@
+.flat_card {
+  display: flex;
+  justify-content:center;
+}
+
+.card_pos {
+  display:flex;
+}
