@@ -1,19 +1,17 @@
-import { Routes } from "react-router-dom";
-import FormC from "./components/FormC/FormC";
+
+import HeaderNav from "./components/HeaderNav/HeaderNav";
+import { Layout } from 'antd';
+import FooterS from "./components/FooterS/FooterS";
+import ContentS from "./components/ContentS/ContentS";
 
 function App() {
   return (
-  <div>
-    <FormC/>
+    <Layout className="layout">
+      <HeaderNav />
+      <ContentS />
+      <FooterS/>
+    </Layout>
 
-      {/* <Route path="/" element={<MainPage />} />
-      <Route path="/" element={<MainPage />} />
-      <Route path="/" element={<MainPage />} />
-      <Route path="/" element={<MainPage />} />
-      <Route path="/" element={<MainPage />} />
-      <Route path="/" element={<MainPage />} /> */}
-    </Routes>
-    </div>
   );
 }
 
