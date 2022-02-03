@@ -1,3 +1,4 @@
+
 import HeaderNav from "./components/HeaderNav/HeaderNav";
 import { Layout } from 'antd';
 import FooterS from "./components/FooterS/FooterS";
@@ -10,6 +11,7 @@ function App() {
       <ContentS />
       <FooterS/>
     </Layout>
+
   );
 }
 

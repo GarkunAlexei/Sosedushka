@@ -10,9 +10,15 @@ function HeaderNav() {
     <Header>
       <div className={style.logo} />
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} className={style.position_menu}>
-        <Link to='/'><Menu.Item >Main</Menu.Item></Link>
+        <Link to={'/'}>
+        <Menu.Item >Main</Menu.Item>
+        </Link>
+        <Link to={'/singin'}>
         <Menu.Item >Sign in</Menu.Item>
+        </Link>
+        <Link to={'/singup'}>
         <Menu.Item >Sign up</Menu.Item>
+        </Link>
       </Menu>
     </Header>
   )
