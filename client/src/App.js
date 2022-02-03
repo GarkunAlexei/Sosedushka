@@ -1,10 +1,8 @@
-import { Button, DatePicker } from 'antd';
-import { Routes, Route, Link } from "react-router-dom";
-
+import { Routes } from "react-router-dom";
 
 function App() {
   return (
-  <div className="container">
+  <div>
     <Routes>
       {/* <Route path="/" element={<MainPage />} />
       <Route path="/" element={<MainPage />} />
