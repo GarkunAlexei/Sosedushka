@@ -12,8 +12,6 @@ function SingUp(props) {
   const inputHandler = (e) => {
     setInputs(prev => ({...prev, [e.target.name]: e.target.value}))
   };
-
-  console.log(inputs);
   
   const submitHandler = (e) => {
     e.preventDefault();

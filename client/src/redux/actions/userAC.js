@@ -14,7 +14,6 @@ export const setUser = (value) => {
 export const getUser = (input) => async(dispatch) => { 
     console.log(11111111);
     const response = await axios.post('/user/signup', input); 
-    console.log(input);
     console.log(response.data);
     dispatch(setUser(response.data.user)) 
 }
