@@ -16,17 +16,13 @@ function ContentS() {
   return (
     <Content style={{ padding: '0 300px' }}>
       <div className={style.site_layout_content}>
-      <Routes>
-
-        <Route path="/account" element={<FormAccount />} />
-        <Route path="/singin" element={<SingIn />} />
-        <Route path="/singup" element={<SingUp  />} />
-        <Route path="/createannouncement" element={<AnnouncementCreate />} />
-        <Route path="/" element={<MainPage />} />
-        <Route path="/extra" element={<DetailPage />} />
-        <Route path="/userpage" element={<UserWrapper />} />
-
-      </Routes>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/account" element={<FormAccount />} />
+          <Route path="/singin" element={<SingIn />} />
+          <Route path="/singup" element={<SingUp />} />
+          <Route path="/createannouncement" element={<AnnouncementCreate />} />
+        </Routes>
       </div>
     </Content>
   )

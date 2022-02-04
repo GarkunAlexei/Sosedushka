@@ -8,20 +8,27 @@ function HeaderNav() {
 
   return (
     <Header>
-      <div className={style.logo} />
+      {/* <div className={style.logo} /> */}
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} className={style.position_menu}>
-        <Link to={'/'}>
-        <Menu.Item >Main</Menu.Item>
-        </Link>
-        <Link to={'/userpage'}>
-        <Menu.Item >Личный кабинет</Menu.Item>
-        </Link>
-        <Link to={'/singin'}>
-        <Menu.Item >Sign in</Menu.Item>
-        </Link>
-        <Link to={'/singup'}>
-        <Menu.Item >Sign up</Menu.Item>
-        </Link>
+        <div>
+          <Link to={'/'}>
+            <Menu.Item ><span className={style.logo_name}>Соседушка</span></Menu.Item>
+          </Link>
+        </div>
+        <div className={style.menu}>
+          <Link to={'/createannouncement'}>
+            <Menu.Item >Создать новое объявление</Menu.Item>
+          </Link>
+          <Link to={'/'}>
+            <Menu.Item >Главная</Menu.Item>
+          </Link>
+          <Link to={'/singin'}>
+            <Menu.Item >Войти</Menu.Item>
+          </Link>
+          <Link to={'/singup'}>
+            <Menu.Item >Регистация</Menu.Item>
+          </Link>
+        </div>
       </Menu>
     </Header>
   )
