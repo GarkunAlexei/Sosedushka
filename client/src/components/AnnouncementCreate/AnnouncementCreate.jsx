@@ -10,19 +10,14 @@ import { Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { Typography } from 'antd';
 import style from './style.module.css'
-import { YMaps, Map } from 'react-yandex-maps';
-
+import YMapComponent from '../YMap/CreatePoint/YMapComponent';
 
 
 const { Title } = Typography;
 
 function AnnouncementCreate() {
 
-  const [componentSize, setComponentSize] = useState('default');
-
-  const onFormLayoutChange = ({ size }) => {
-    setComponentSize(size);
-  };
+  const [input, setInput] = useState({ name: '', cost: '', coords: [] })
 
   const props = {
     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -55,28 +50,34 @@ function AnnouncementCreate() {
   };
 
 
+  const inputHandler = (e) => {
+    setInput(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setInput({})
+  }
+
+  console.log(input);
+
   return (
     <>
       <Title level={2} className={style.title}>Подача объявления</Title>
       <Form
         labelCol={{
-          span: 5,
+          span: 4,
         }}
         wrapperCol={{
-          span: 14,
+          span: 12,
         }}
         layout="horizontal"
-        initialValues={{
-          size: componentSize,
-        }}
-        onValuesChange={onFormLayoutChange}
-        size={componentSize}
       >
-        <Form.Item label="Название:">
-          <Input />
+        <Form.Item label="Название:" onChange={inputHandler}>
+          <Input name="name" value={input.name} />
         </Form.Item>
         <Form.Item label="Стоимость проживания:">
-          <Input />
+          <Input value={input.cost} />
         </Form.Item>
         <Form.Item label="Адрес:">
           <Input />
@@ -97,14 +98,10 @@ function AnnouncementCreate() {
           </Upload>
         </Form.Item>
         <Form.Item label="Местоположение">
-          <YMaps>
-            <div>
-              <Map defaultState={{ center: [55.75, 37.57], zoom: 10 }} width={450} height={300} />
-            </div>
-          </YMaps>
+          <YMapComponent/>
         </Form.Item>
         <Form.Item label=" ">
-          <Button type="primary">Подать объявление</Button>
+          <Button onClick={submitHandler} type="primary">Подать объявление</Button>
         </Form.Item>
       </Form>
     </>
