@@ -4,6 +4,8 @@ import style from './style.module.css'
 import { Descriptions } from 'antd';
 import { Image } from 'antd';
 import { blue } from '@ant-design/colors';
+import { Link } from 'react-router-dom';
+
 
 export const CardFlat = () => {
 
@@ -23,7 +25,9 @@ export const CardFlat = () => {
                 <Descriptions.Item label="Строимость:">6000 руб.</Descriptions.Item>
               </Descriptions>
             </div>
+            <Link to={'/extra'}>
             <Button color={blue[3]} type="primary">Подробнее</Button>
+            </Link>
           </Col>
 
           <Col span={5}>

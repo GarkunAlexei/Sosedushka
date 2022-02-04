@@ -17,6 +17,7 @@ const { Content } = Layout;
 
 
 function ContentS() {
+  
   return (
     <Content style={{ padding: '0 300px' }}>
       <div className={style.site_layout_content}>
@@ -24,39 +25,40 @@ function ContentS() {
 
        <Routes>
         <Route path="/" element={
-          <ProtectedAuth>
+          // <ProtectedAuth>
             <MainPage />
-           </ProtectedAuth>
+          //  </ProtectedAuth>
           } />
           <Route path="/singin" element={
-          <AuthUser>
+          // <AuthUser>
             <SingIn />
-          </AuthUser>
+          // </AuthUser>
           } />
           <Route path="/singup" element={
-          <AuthUser>
+          // <AuthUser>
             <SingUp/>
-          </AuthUser>
+          // </AuthUser>
           } />
           <Route path="/account" element={
-          <ProtectedAuth>
+          // <ProtectedAuth>
             <FormAccount />
-          </ProtectedAuth>      
+          // </ProtectedAuth>      
           } />
-          <Route path="/profil" element={
-          <ProtectedAuth>
-            <UserPage />
-          </ProtectedAuth>
+
+          <Route path="/profile" element={
+          // <ProtectedAuth>
+            <UserWrapper />
+          // </ProtectedAuth>
           } />
           <Route path="/extra" element={
-          <ProtectedAuth>
+          // <ProtectedAuth>
             <DetailPage />
-          </ProtectedAuth>
+          // </ProtectedAuth>
           } />
           <Route path="/userpage" element={
-          <ProtectedAuth>
+          // <ProtectedAuth>
             <UserWrapper />
-            </ProtectedAuth>
+            // </ProtectedAuth>
           } />
 
         </Routes>
