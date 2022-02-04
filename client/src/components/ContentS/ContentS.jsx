@@ -1,13 +1,16 @@
 import React from 'react';
 import { Layout } from 'antd';
 import style from './style.module.css'
-import { Routes, Route } from 'react-router-dom';
 import SingUp from '../SingUp/SingUp';
 import SingIn from '../SingIn/SingIn';
 import FormAccount from '../FormAccount/FormAccaunt';
 import AnnouncementCreate from '../AnnouncementCreate/AnnouncementCreate';
 import { MainPage } from '../MainPage/MainPage';
+import { DetailPage } from '../DetailPage/DetailPage';
+import UserWrapper from '../UserWrapper/UserWrapper';
+import { Routes, Route } from 'react-router-dom';
 const { Content } = Layout;
+
 
 function ContentS() {
   return (
