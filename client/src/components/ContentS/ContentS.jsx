@@ -6,8 +6,11 @@ import SingIn from '../SingIn/SingIn';
 import FormAccount from '../FormAccount/FormAccaunt';
 import AnnouncementCreate from '../AnnouncementCreate/AnnouncementCreate';
 import { MainPage } from '../MainPage/MainPage';
+import { DetailPage } from '../DetailPage/DetailPage';
 import UserWrapper from '../UserWrapper/UserWrapper';
+import { Routes, Route } from 'react-router-dom';
 const { Content } = Layout;
+
 
 function ContentS() {
   return (
@@ -20,6 +23,7 @@ function ContentS() {
         <Route path="/singup" element={<SingUp  />} />
         <Route path="/createannouncement" element={<AnnouncementCreate />} />
         <Route path="/" element={<MainPage />} />
+        <Route path="/extra" element={<DetailPage />} />
         <Route path="/userpage" element={<UserWrapper />} />
 
       </Routes>
