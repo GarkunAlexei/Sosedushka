@@ -1,7 +1,6 @@
 import React from 'react';
 import { Layout } from 'antd';
 import style from './style.module.css'
-import { Routes, Route } from 'react-router-dom';
 import SingUp from '../SingUp/SingUp';
 import SingIn from '../SingIn/SingIn';
 import FormAccount from '../FormAccount/FormAccaunt';
