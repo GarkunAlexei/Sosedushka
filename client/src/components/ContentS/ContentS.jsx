@@ -18,44 +18,46 @@ function ContentS() {
   return (
     <Content style={{ padding: '0 300px' }}>
       <div className={style.site_layout_content}>
-      <Routes>
-      <Route path="/" element={
-        <ProtectedAuth>
-          <MainPage />
-         </ProtectedAuth>
-        } />
-        <Route path="/singin" element={
-        <AuthUser>
-          <SingIn />
-        </AuthUser>
-        } />
-        <Route path="/singup" element={
-        <AuthUser>
-          <SingUp/>
-        </AuthUser>
-        } />
-        <Route path="/account" element={
-        <ProtectedAuth>
-          <FormAccount />
-        </ProtectedAuth>      
-        } />
-        <Route path="/createannouncement" element={
-        <ProtectedAuth>
-          <AnnouncementCreate />
-        </ProtectedAuth>
-        } />
-        <Route path="/extra" element={
-        <ProtectedAuth>
-          <DetailPage />
-        </ProtectedAuth>
-        } />
-        <Route path="/userpage" element={
-        <ProtectedAuth>
-          <UserWrapper />
-          </ProtectedAuth>
-        } />
 
-      </Routes>
+       <Routes>
+        <Route path="/" element={
+          <ProtectedAuth>
+            <MainPage />
+           </ProtectedAuth>
+          } />
+          <Route path="/singin" element={
+          <AuthUser>
+            <SingIn />
+          </AuthUser>
+          } />
+          <Route path="/singup" element={
+          <AuthUser>
+            <SingUp/>
+          </AuthUser>
+          } />
+          <Route path="/account" element={
+          <ProtectedAuth>
+            <FormAccount />
+          </ProtectedAuth>      
+          } />
+          <Route path="/createannouncement" element={
+          <ProtectedAuth>
+            <AnnouncementCreate />
+          </ProtectedAuth>
+          } />
+          <Route path="/extra" element={
+          <ProtectedAuth>
+            <DetailPage />
+          </ProtectedAuth>
+          } />
+          <Route path="/userpage" element={
+          <ProtectedAuth>
+            <UserWrapper />
+            </ProtectedAuth>
+          } />
+
+        </Routes>
+
       </div>
     </Content>
   )

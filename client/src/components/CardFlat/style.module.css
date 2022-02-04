@@ -1,8 +1,8 @@
 .flat_card {
-  display: flex;
-  justify-content:center;
+  margin-bottom: 20px;
+  border: 1px solid grey;
 }
 
-.card_pos {
-  display:flex;
+.card {
+  border: 1px solid grey;
 }
