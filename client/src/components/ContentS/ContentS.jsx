@@ -11,6 +11,8 @@ import UserWrapper from '../UserWrapper/UserWrapper';
 import { Routes, Route } from 'react-router-dom';
 import AuthUser from '../ProtectedAuth/AuthUser';
 import ProtectedAuth from '../ProtectedAuth/ProtectedAuth';
+import UserPage from '../UserPage/UserPage';
+
 const { Content } = Layout;
 
 
@@ -19,6 +21,7 @@ function ContentS() {
   return (
     <Content style={{ padding: '0 300px' }}>
       <div className={style.site_layout_content}>
+
 
        <Routes>
         <Route path="/" element={
@@ -41,6 +44,7 @@ function ContentS() {
             <FormAccount />
           // </ProtectedAuth>      
           } />
+
           <Route path="/profile" element={
           // <ProtectedAuth>
             <UserWrapper />

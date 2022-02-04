@@ -3,13 +3,13 @@ import {
   Form,
   Input,
   Button,
-  Radio,
   Select,
   DatePicker,
   InputNumber,
-  Switch,
-  Checkbox, Row, Col
+  Checkbox, Row, Col, Upload
 } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+
 
 function FormAccount(props) {
   const { TextArea } = Input;
@@ -27,18 +27,12 @@ function FormAccount(props) {
   
 
   >
-    <h2>Заполни анкету</h2>
+    <h2>Профиль</h2>
     <Form.Item label="ФИО">
       <Input />
     </Form.Item>
     <Form.Item label="Телефон">
       <Input type="tel" defaultValue="+7 " />
-    </Form.Item>
-    <Form.Item label="Telegram">
-      <Input type="text" defaultValue="@" />
-    </Form.Item>
-    <Form.Item label="instagram">
-      <Input type="text" defaultValue="@" />
     </Form.Item>
     <Form.Item label="Выбери пол">
       <Select>
@@ -46,10 +40,11 @@ function FormAccount(props) {
         <Select.Option value="female">female</Select.Option>
       </Select>
     </Form.Item>
-    <Form.Item label="Фото">
-      <Input type="url"/>
-  
-    </Form.Item>
+    <Form.Item label="Фото:">
+          <Upload {...props}>
+            <Button icon={<UploadOutlined />}>Upload</Button>
+          </Upload>
+        </Form.Item>
     <Form.Item label="О себе">
     <TextArea showCount maxLength={255} />
     </Form.Item>
