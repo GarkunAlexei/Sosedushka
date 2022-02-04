@@ -1,4 +1,4 @@
-import { GET_USERS } from "../types/userTypes";
+import { SET_USER } from "../types/userTypes";
 
 
 export const userReducer = (state = [], action) => {
@@ -7,7 +7,7 @@ export const userReducer = (state = [], action) => {
 
   switch (type) {
 /////  добавление в стор из БД
-      case GET_USERS:
+      case SET_USER:
           return payload;
 
       default:

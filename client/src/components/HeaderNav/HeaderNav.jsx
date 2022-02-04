@@ -13,6 +13,9 @@ function HeaderNav() {
         <Link to={'/'}>
         <Menu.Item >Main</Menu.Item>
         </Link>
+        <Link to={'/userpage'}>
+        <Menu.Item >Личный кабинет</Menu.Item>
+        </Link>
         <Link to={'/singin'}>
         <Menu.Item >Sign in</Menu.Item>
         </Link>
