@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       coords: {
-        type: Sequelize.JSON
+        type: Sequelize.JSONB
       },
       location_id: {
         type: Sequelize.INTEGER,

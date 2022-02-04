@@ -4,9 +4,7 @@ import style from './style.module.css'
 import SingUp from '../SingUp/SingUp';
 import SingIn from '../SingIn/SingIn';
 import FormAccount from '../FormAccount/FormAccaunt';
-
 import AnnouncementCreate from '../AnnouncementCreate/AnnouncementCreate';
-import { Routes, Route } from 'react-router-dom';
 import { MainPage } from '../MainPage/MainPage';
 import UserWrapper from '../UserWrapper/UserWrapper';
 const { Content } = Layout;
@@ -16,15 +14,14 @@ function ContentS() {
     <Content style={{ padding: '0 300px' }}>
       <div className={style.site_layout_content}>
       <Routes>
-      <Route path="/account" element={<FormAccount />} />
-      <Route path="/singin" element={<SingIn />} />
-      <Route path="/singup" element={<SingUp  />} />
+
+        <Route path="/account" element={<FormAccount />} />
+        <Route path="/singin" element={<SingIn />} />
+        <Route path="/singup" element={<SingUp  />} />
         <Route path="/createannouncement" element={<AnnouncementCreate />} />
         <Route path="/" element={<MainPage />} />
-        {/* <Route path="/" element={<MainPage />} />
-        <Route path="/" element={<MainPage />} />
-      <Route path="/" element={<MainPage />} /> */}
-      <Route path="/userpage" element={<UserWrapper />} />
+        <Route path="/userpage" element={<UserWrapper />} />
+
       </Routes>
       </div>
     </Content>

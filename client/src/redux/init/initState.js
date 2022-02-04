@@ -1,6 +1,6 @@
 export const initState = {
-  users: [],
-  // roles: [],
+  user: null,
+  roles: [],
   // user: null,
   // comments: []
 }
