@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Input, Button,  } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getUser } from '../../redux/actions/userAC';
 
@@ -8,6 +8,7 @@ import { getUser } from '../../redux/actions/userAC';
 function SingUp(props) {
   const [inputs, setInputs] = useState({login:'', email:'', password:'', role_id:2});
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const inputHandler = (e) => {
     setInputs(prev => ({...prev, [e.target.name]: e.target.value}))
@@ -17,7 +18,8 @@ function SingUp(props) {
     e.preventDefault();
     dispatch(getUser(inputs))
     setInputs({login:'', email:'', password:'', role_id:2})
-}
+    navigate('/profile')
+  };
 
   const onFinish = (values) => {
     console.log('Success:', values);
@@ -80,11 +82,6 @@ function SingUp(props) {
 
       <Form.Item
         label="password"
-        id="password"
-        name="password"
-        type='password'
-        onChange={inputHandler}
-        value={inputs.password}
         rules={[
           {
             required: true,
@@ -107,11 +104,9 @@ function SingUp(props) {
           span: 16,
         }}
       >
-        <Link to={'/'}>
         <Button onClick={submitHandler} type="primary" htmlType="submit">
           Зарегестрироваться
         </Button>
-        </Link>
       </Form.Item>
     </Form>
   );

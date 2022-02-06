@@ -1,11 +1,19 @@
 import React from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Button } from 'antd';
 import style from './style.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogout } from '../../redux/actions/userAC';
 const { Header } = Layout;
 
 function HeaderNav() {
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const logoutHandler = () => {
+    dispatch(userLogout())
+    navigate('/')
+  };
+  
   return (
     <Header>
       {/* <div className={style.logo} /> */}
@@ -16,7 +24,7 @@ function HeaderNav() {
           </Link>
         </div>
         <div className={style.menu}>
-          <Link to={'/profil'}>
+          <Link to={'/profile'}>
             <Menu.Item >Личный кабинет</Menu.Item>
           </Link>
           <Link to={'/'}>
@@ -28,6 +36,9 @@ function HeaderNav() {
           <Link to={'/singup'}>
             <Menu.Item >Регистация</Menu.Item>
           </Link>
+          <Menu.Item >
+            <Button onClick={logoutHandler} >Выйти</Button>
+          </Menu.Item>
         </div>
       </Menu>
     </Header>
