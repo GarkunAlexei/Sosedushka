@@ -5,12 +5,13 @@ import { useLocation, Navigate } from 'react-router-dom';
 const ProtectedAuth = ({ children }) => {
     const user = useSelector( state => state.user);
     let location = useLocation();
-    console.log('==>>>protect')
-    console.log(user);
+    // console.log('==>>>protect')
+    // console.log(user);
     if(!user){
-       return <Navigate to="/singup" state={{ from: location }} replace />;
+       return <Navigate to="/singin" state={{ from: location }} replace />;
+    } else {
+      return children;
     }
-    return children;
 }
 
 export default ProtectedAuth;
