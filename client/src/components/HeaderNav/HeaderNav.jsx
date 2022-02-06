@@ -8,7 +8,6 @@ function HeaderNav() {
 
   return (
     <Header>
-      {/* <div className={style.logo} /> */}
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} className={style.position_menu}>
         <div>
           <Link to={'/'}>
