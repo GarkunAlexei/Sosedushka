@@ -18,7 +18,7 @@ export const getUser = (input) => async(dispatch) => {
     dispatch(setUser(response.data.user)) 
 }
 
-export const signUpUser = ( input ) => async ( dispatch ) => {
+export const signInUser = ( input ) => async ( dispatch ) => {
   const response = await axios.post('/user/signin', input)
   dispatch(setUser(response.data.user))
 }
