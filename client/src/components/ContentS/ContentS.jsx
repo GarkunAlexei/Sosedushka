@@ -27,7 +27,7 @@ function ContentS() {
         <Route path="/" element={
           // <ProtectedAuth>
             <MainPage />
-          //  </ProtectedAuth>
+          // </ProtectedAuth>
           } />
           <Route path="/singin" element={
           // <AuthUser>
@@ -58,7 +58,7 @@ function ContentS() {
           <Route path="/userpage" element={
           // <ProtectedAuth>
             <UserWrapper />
-            // </ProtectedAuth>
+          // </ProtectedAuth>
           } />
 
         </Routes>
