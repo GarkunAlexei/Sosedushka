@@ -15,9 +15,6 @@ function HeaderNav() {
           </Link>
         </div>
         <div className={style.menu}>
-          <Link to={'/createannouncement'}>
-            <Menu.Item >Создать новое объявление</Menu.Item>
-          </Link>
           <Link to={'/'}>
             <Menu.Item >Главная</Menu.Item>
           </Link>
