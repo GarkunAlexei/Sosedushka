@@ -24,7 +24,7 @@ function HeaderNav() {
           </Link>
         </div>
         <div className={style.menu}>
-        {/* { user 
+        { user 
         ? 
           <>
           <Link to={'/profile'}>
@@ -46,22 +46,7 @@ function HeaderNav() {
             <Menu.Item >Регистация</Menu.Item>
           </Link>
           </>
-        } */}
-          <Link to={'/profile'}>
-            <Menu.Item >Личный кабинет</Menu.Item>
-          </Link>
-          <Link to={'/'}>
-            <Menu.Item >Главная</Menu.Item>
-          </Link>
-          <Menu.Item >
-            <Button type="primary" danger ghost onClick={logoutHandler} >Выйти</Button>
-          </Menu.Item>
-          <Link to={'/singin'}>
-            <Menu.Item >Войти</Menu.Item>
-          </Link>
-          <Link to={'/singup'}>
-            <Menu.Item >Регистация</Menu.Item>
-          </Link>
+        }
         </div>
       </Menu>
     </Header>
