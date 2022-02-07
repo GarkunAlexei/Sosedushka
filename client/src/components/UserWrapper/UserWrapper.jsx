@@ -3,6 +3,7 @@ import { Card } from 'antd';
 import UserPage from '../UserPage/UserPage';
 import AnnouncementCreate from '../AnnouncementCreate/AnnouncementCreate'
 import FormAccount from '../FormAccount/FormAccaunt';
+import Interests from '../Interests/Interests';
 
 
 const tabList = [
@@ -18,12 +19,18 @@ const tabList = [
     key: 'ad',
     tab: 'Объявление',
   },
+  {
+    key: 'interests',
+    tab: 'Мои интересы',
+  },
 ];
 
 const contentList = {
   profil: <UserPage/>,
   profilRedact: <FormAccount/>,
   ad: <AnnouncementCreate/>,
+  interests: <Interests/>
+
 };
 
 
