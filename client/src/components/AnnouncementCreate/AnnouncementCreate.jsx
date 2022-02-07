@@ -3,15 +3,11 @@ import {
   Form,
   Input,
   Button,
-  Select,
-
 } from 'antd';
-import { Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { Typography, Progress, Modal } from 'antd';
 import style from './style.module.css'
 import YMapComponent from '../YMap/CreatePoint/YMapComponent';
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addAd } from '../../redux/actions/adAC';
 import { storage } from '../../firebase/firebase';
@@ -44,30 +40,6 @@ function AnnouncementCreate() {
 
   const dispatch = useDispatch();
 
-  const props = {
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    onChange({ file, fileList }) {
-      if (file.status !== 'uploading') {
-        console.log(file, fileList);
-      }
-    },
-    defaultFileList: [
-      {
-        uid: '1',
-        name: 'xxx.png',
-        status: 'done',
-        response: 'Server Error 500', // custom error message to show
-        url: 'http://www.baidu.com/xxx.png',
-      },
-      {
-        uid: '2',
-        name: 'yyy.png',
-        status: 'done',
-        url: 'http://www.baidu.com/yyy.png',
-      },
-    ],
-  };
-
   const inputHandler = (e) => {
     setInput(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
@@ -81,9 +53,9 @@ function AnnouncementCreate() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const file = e.target[0].files[0]
-    console.log(file);
-    uploadFiles(file)
+    // const file = e.target[0].files[0]
+    // console.log(file);
+    // uploadFiles(file)
     dispatch(addAd(input))
     // setInput({})
   }
@@ -95,17 +67,15 @@ function AnnouncementCreate() {
     const uploadTask = uploadBytesResumable(storageRef, image)
 
     uploadTask.on('state_changed', (snaphot) => {
-      const prog = Math.round(
-        (snaphot.bytesTransferred / snaphot.totalBytes) * 100
-      );
+      const prog = Math.round((snaphot.bytesTransferred / snaphot.totalBytes) * 100);
       setProgress(prog);
-
     }, (err) => console.log(err),
       () => {
         getDownloadURL(uploadTask.snapshot.ref)
           .then(url => setInput(prev => ({ ...prev, img: url })))
       }
     )
+
   }
 
 
@@ -120,7 +90,6 @@ function AnnouncementCreate() {
           span: 12,
         }}
         layout="horizontal"
-        onSubmit={submitHandler}
       >
         <Form.Item label="Название:" onChange={inputHandler}>
           <Input name="name" value={input.name} />
@@ -130,13 +99,6 @@ function AnnouncementCreate() {
         </Form.Item>
         <Form.Item label="Адрес (укажите на карте):" onChange={inputHandler}>
           <Input name="address" value={input.address} />
-        </Form.Item>
-        <Form.Item label="Метро">
-          <Select>
-            <Select.Option value="demo">м.Ленинский проспект</Select.Option>
-            <Select.Option value="demo">м.Комсомольская</Select.Option>
-            <Select.Option value="demo">м.Китай-город</Select.Option>
-          </Select>
         </Form.Item>
         <Form.Item label="Описание" onChange={inputHandler}>
           <Input.TextArea name="description" value={input.description} />
@@ -165,7 +127,7 @@ function AnnouncementCreate() {
           <YMapComponent setInput={setInput} />
         </Form.Item>
         <Form.Item label={' '}>
-          <Button type="primary">Подать объявление</Button>
+          <Button type="primary" onClick={submitHandler}>Подать объявление</Button>
         </Form.Item>
       </Form>
     </>
