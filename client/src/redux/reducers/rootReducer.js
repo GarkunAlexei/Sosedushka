@@ -7,4 +7,5 @@ export const rootReducer = combineReducers({
     user: userReducer,
     roles: rolesReducer,
     interest: interestReducer,
+    
 });

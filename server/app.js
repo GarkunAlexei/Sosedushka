@@ -10,6 +10,7 @@ var FileStore = require('session-file-store')(session);
 const userRouter = require('./routes/userRouter');
 const rolesRouter = require('./routes/rolesRouter');
 const interestRouter = require('./routes/interestRouter');
+const formRouter = require('./routes/formRouter');
 
 const PORT = process.env.PORT ?? 3001;
 const app = express();
@@ -35,6 +36,7 @@ app.use(
 app.use('/user', userRouter);
 app.use('/roles', rolesRouter);
 app.use('/interest', interestRouter);
+app.use('/profile', formRouter);
 
 app.listen(PORT, () => {
     console.log('server start on port ', PORT)

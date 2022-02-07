@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Form.init({
+    name: DataTypes.STRING,
     phone: DataTypes.STRING,
     birthday: DataTypes.DATE,
     photo: DataTypes.STRING,

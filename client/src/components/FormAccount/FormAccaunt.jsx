@@ -4,15 +4,35 @@ import {
   Input,
   Button,
   Select,
-  DatePicker,
-  InputNumber,
-  Checkbox, Row, Col, Upload
+  Upload
 } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
+import { addForm } from '../../redux/actions/formAC';
 
 
 function FormAccount(props) {
   const { TextArea } = Input;
+
+  const dispatch = useDispatch()
+  //console.log(Input)
+
+  const [input, setInput] = useState({name: '', phone: '',gender_id: '', about_me: '', birthday: '', budget: ''})
+
+
+  const inputHandler = (e) => {
+    setInput(prev => ({...prev, [e.target.name]: e.target.value}))
+  }
+
+  const selectHandler = (value) => {
+    setInput(prev => ({...prev, gender_id: value}))
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(addForm(input))
+  }
+  console.log(input)
 
 
   return (
@@ -29,15 +49,16 @@ function FormAccount(props) {
   >
     <h2>Профиль</h2>
     <Form.Item label="ФИО">
-      <Input />
+      <Input name="name" onChange={inputHandler}/>
     </Form.Item>
     <Form.Item label="Телефон">
-      <Input type="tel" defaultValue="+7 " />
+      <Input name="phone" type="tel" defaultValue="+7 " onChange={inputHandler}/>
     </Form.Item>
     <Form.Item label="Выбери пол">
-      <Select>
-        <Select.Option value="male">male</Select.Option>
-        <Select.Option value="female">female</Select.Option>
+      <Select  onChange={selectHandler}  >
+        <Select.Option name="gender_id" value="1">male</Select.Option>
+        <Select.Option name="gender_id" value="2">female</Select.Option>
+        <Select.Option name="gender_id" value="3">other...</Select.Option>
       </Select>
     </Form.Item>
     <Form.Item label="Фото:">
@@ -46,32 +67,16 @@ function FormAccount(props) {
           </Upload>
         </Form.Item>
     <Form.Item label="О себе">
-    <TextArea showCount maxLength={255} />
+    <TextArea showCount maxLength={255} name="about_me" onChange={inputHandler}/>
     </Form.Item>
     <Form.Item label="Дата Рождения">
-      <DatePicker />
+      <Input type="date" name="birthday" onChange={inputHandler}/>
     </Form.Item>
     <Form.Item label="Стоймость">
-      <InputNumber /> ₽
-    </Form.Item>
- 
-    <Form.Item label="Интересы">
-    <Checkbox.Group style={{ width: '100%' }} >
-    <Row>
-      <Col span={6}>
-        <Checkbox value="A">кино</Checkbox>
-      </Col>
-      <Col span={6}>
-        <Checkbox value="B">вино</Checkbox>
-      </Col>
-      <Col span={6}>
-        <Checkbox value="C">домино</Checkbox>
-      </Col>
-    </Row>
-  </Checkbox.Group>
+      <Input type="number" name="budget" onChange={inputHandler} suffix="₽"/> 
     </Form.Item>
     <Form.Item >
-      <Button>Сохранить</Button>
+      <Button onClick={submitHandler}> Сохранить</Button>
     </Form.Item>
   </Form>
   );
