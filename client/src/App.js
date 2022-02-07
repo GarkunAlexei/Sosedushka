@@ -12,7 +12,7 @@ function App() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(checkUser())
-    dispatch(getInterest())
+    // dispatch(getInterest())
   }, [])
 
   return (
