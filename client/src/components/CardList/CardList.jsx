@@ -5,8 +5,8 @@ export const CardList = () => {
   return (
     <>
       <CardFlat />
-      <CardFlat />
-      <CardFlat />
+      {/* <CardFlat />
+      <CardFlat /> */}
     </>
   );
 };

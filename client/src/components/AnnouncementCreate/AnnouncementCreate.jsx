@@ -11,13 +11,17 @@ import { UploadOutlined } from '@ant-design/icons';
 import { Typography } from 'antd';
 import style from './style.module.css'
 import YMapComponent from '../YMap/CreatePoint/YMapComponent';
-
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const { Title } = Typography;
 
 function AnnouncementCreate() {
 
-  const [input, setInput] = useState({ name: '', cost: '', coords: [] })
+  const [input, setInput] = useState({ name: '', coords: null, cost: '', description: '', address: '' })
+
+  console.log('...INPUT ====>', {...input});
+
 
   const props = {
     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -49,7 +53,6 @@ function AnnouncementCreate() {
     ],
   };
 
-
   const inputHandler = (e) => {
     setInput(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
@@ -59,14 +62,13 @@ function AnnouncementCreate() {
     setInput({})
   }
 
-  console.log(input);
 
   return (
     <>
       <Title level={2} className={style.title}>Подача объявления</Title>
       <Form
         labelCol={{
-          span: 4,
+          span: 6,
         }}
         wrapperCol={{
           span: 12,
@@ -76,29 +78,29 @@ function AnnouncementCreate() {
         <Form.Item label="Название:" onChange={inputHandler}>
           <Input name="name" value={input.name} />
         </Form.Item>
-        <Form.Item label="Стоимость проживания:">
-          <Input value={input.cost} />
+        <Form.Item label="Стоимость проживания:" onChange={inputHandler}>
+          <Input name="cost" value={input.cost} />
         </Form.Item>
-        <Form.Item label="Адрес:">
-          <Input />
+        <Form.Item label="Адрес (укажите на карте):" onChange={inputHandler}>
+          <Input name="address" value={input.address} />
         </Form.Item>
         <Form.Item label="Метро">
           <Select>
-            <Select.Option value="demo">м. Ленинский проспект</Select.Option>
-            <Select.Option value="demo">м. Комсомольская</Select.Option>
-            <Select.Option value="demo">м. Китай-город</Select.Option>
+            <Select.Option value="demo">м.Ленинский проспект</Select.Option>
+            <Select.Option value="demo">м.Комсомольская</Select.Option>
+            <Select.Option value="demo">м.Китай-город</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item label="Описание">
-          <Input.TextArea />
+        <Form.Item label="Описание" onChange={inputHandler}>
+          <Input.TextArea name="description" value={input.description} />
         </Form.Item>
         <Form.Item label="Фото:">
           <Upload {...props}>
-            <Button icon={<UploadOutlined />}>Upload</Button>
+            <Button icon={<UploadOutlined />}>Загрузить</Button>
           </Upload>
         </Form.Item>
-        <Form.Item label="Местоположение">
-          <YMapComponent/>
+        <Form.Item label="Местоположение" >
+          <YMapComponent setInput={setInput}/>
         </Form.Item>
         <Form.Item label=" ">
           <Button onClick={submitHandler} type="primary">Подать объявление</Button>
