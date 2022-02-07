@@ -10,9 +10,9 @@ export const setUser = (value) => {
 } 
 
 export const getUser = (input) => async(dispatch) => { 
-    console.log(11111111);
+    //console.log(11111111);
     const response = await axios.post('/user/signup', input); 
-    console.log(response.data);
+    //console.log(response.data);
     dispatch(setUser(response.data.user)) 
 }
 
@@ -28,7 +28,7 @@ export const userLogout = () => async (dispatch) => {
 
 export const checkUser = () => async (dispatch) => {
   const res = await axios.post('/user/check')
-  console.log(res)
+  //console.log(res)
   if(res.statusText){
       dispatch(setUser(res.data.user))
   } else {

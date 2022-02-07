@@ -13,7 +13,8 @@ export const setForm = (value) => {
 export const getForm = () => async (dispatch) => {
   await axios('/profile')
   .then(res => {
-    dispatch(setForm(res.data))
+    console.log(res.data.forms)
+    dispatch(setForm(res.data.forms))
   })
 }
 
