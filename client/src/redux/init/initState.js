@@ -3,6 +3,5 @@ export const initState = {
   roles: 2,
   interest: [],
   form: [],
-  // comments: []
   ad: null,
 }

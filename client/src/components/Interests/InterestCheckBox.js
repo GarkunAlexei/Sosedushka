@@ -5,24 +5,25 @@ import { useDispatch } from 'react-redux';
 
 
 export default function InterestCheckBox({id, interest}) {
-  // const [checked, setChecked] = useState(false);
-  // console.log(checked);
-  const [visible, setVisible] = useState(true);
+  // const [visible, setVisible] = useState(true);
 
   const dispatch = useDispatch()
   const submitHandler = (id) => {
       dispatch(getChange(id))
-      setVisible(!visible)
+      // setVisible(!visible)
     }
 
   return (
   
   <>
-  { visible && 
+  <Col span={6}>
+    <Checkbox id={id} onChange={() => submitHandler(id)}>{interest}</Checkbox>
+  </Col>
+  {/* { visible && 
     <Col span={6}>
       <Checkbox id={id} onChange={() => submitHandler(id)}>{interest}</Checkbox>
     </Col>
-  }
+  } */}
   </>
   );
 }

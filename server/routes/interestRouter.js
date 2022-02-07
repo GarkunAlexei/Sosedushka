@@ -1,31 +1,39 @@
 const router = require('express').Router();
-const { Interest, Entries, User } = require('../db/models')
+const { Interest, Entries, User, Form } = require('../db/models')
 
 router.get('/', async(req, res) => {
-  const interest = await Interest.findAll();
-  res.json({interest})
+  try{
+    const interest = await Interest.findAll();
+    res.json({interest})
+  } catch(err) {
+    console.log(err)
+    return res.sendStatus(500)
+}
 })
 router.post('/:id', async (req, res) => {
-  console.log(req.session.user.id, 'id!!!!!!!!!');
-  const user = await User.findOne({
-    where: { id: req.session.user.id },
-    // include: { model: Interest },
-  });
-  console.log(user, 'useruseruseruser!!!!!!!!!');
   const {id} = req.params;
-  const chek = await Interest.findOne({
-    where: { id },
+
+  try{
+    const form = await Form.findOne({
+      where: { user_id: req.session.user.id },
+      include: Interest,
+    });
+    await Entries.create({hobby_id: id, form_id: form.id})
+  } catch(err) {
+    console.log(err)
+    return res.sendStatus(500)
+  }
+
+
+  const formToReact = await Form.findOne({
+    where: { user_id: req.session.user.id },
+    include: Interest,
   });
-
-  // await Entries.create({hobby_id: id, form_id: })
-
-  // await Interest.update(req.body, { where:{id}})
-
-  // const book = await Book.findOne({
-  //   where: { id },
-  // });
-  // console.log('--->',chek)
-  res.json({chek})
+  // console.log('FORM------>>>>', formToReact);
+  console.log('ARR WITH INTERESTS------>>>>', formToReact.Interests);
+  const interest = formToReact.Interests
+  console.log(interest[0].interest);
+  res.json({interest})
 });
 
 

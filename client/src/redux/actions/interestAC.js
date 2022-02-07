@@ -23,6 +23,6 @@ export const setChange = (data) => {
 
 export const getChange = (id) => async (dispatch) => {
   console.log('Goooo!');
-  const result = await axios.post(`/interest/${id}`)
-  dispatch(setChange(result.data.chek))
+  await axios.post(`/interest/${id}`)
+  dispatch(setChange(id))
 }
