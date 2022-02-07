@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getInterest } from '../../redux/actions/interestAC';
+import InterestCheckBox from './InterestCheckBox';
+import { Row } from 'antd';
+
 
 function Interests(props) {
+  const interest = useSelector(state => state.interest)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getInterest())
+  }, [])
+
   return (
-  <>
-  Мои интересы
-  </>
+    <>
+      <b>Выберите свои интересы</b>
+      
+        <Row>
+          {interest.map(el => <InterestCheckBox key={el.id} interest={el.interest} id={el.id} />)}
+        </Row>
+      
+    </>
   );
 }
 
