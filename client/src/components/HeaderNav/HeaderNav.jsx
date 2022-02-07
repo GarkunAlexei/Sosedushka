@@ -16,7 +16,7 @@ function HeaderNav() {
           </Link>
         </div>
         <div className={style.menu}>
-          <Link to={'/profil'}>
+          <Link to={'/profile'}>
             <Menu.Item >Личный кабинет</Menu.Item>
           </Link>
           <Link to={'/'}>
