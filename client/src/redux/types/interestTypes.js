@@ -1,0 +1,1 @@
+export const SET_INTEREST = "SET_INTEREST"
