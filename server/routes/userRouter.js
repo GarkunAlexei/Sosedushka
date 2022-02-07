@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
-const axios = require('axios');
 const { User } = require('../db/models');
 
 router.route('/check')
@@ -30,7 +29,6 @@ router.route('/signup')
     }
 });
 
-
 router.route('/signin')
 .post(async (req, res) => {
     const {email, password} = req.body;
@@ -56,7 +54,7 @@ router.route('/signin')
 router.route('/logout')
 .post((req, res) => {
     req.session.destroy()
-    res.clearCookie('sid').sendStatus(200)
+    res.clearCookie('somename').sendStatus(200)
 });
 
 module.exports = router;

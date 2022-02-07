@@ -23,42 +23,42 @@ function ContentS() {
       <div className={style.site_layout_content}>
 
 
-       <Routes>
+        <Routes>
         <Route path="/" element={
           // <ProtectedAuth>
             <MainPage />
-          //  </ProtectedAuth>
+          // </ProtectedAuth>
           } />
           <Route path="/singin" element={
-          // <AuthUser>
+          <AuthUser>
             <SingIn />
-          // </AuthUser>
+          </AuthUser>
           } />
           <Route path="/singup" element={
-          // <AuthUser>
+          <AuthUser>
             <SingUp/>
-          // </AuthUser>
+          </AuthUser>
           } />
           <Route path="/account" element={
-          // <ProtectedAuth>
+          <ProtectedAuth>
             <FormAccount />
-          // </ProtectedAuth>      
+          </ProtectedAuth>      
           } />
 
           <Route path="/profile" element={
-          // <ProtectedAuth>
+          <ProtectedAuth>
             <UserWrapper />
-          // </ProtectedAuth>
+          </ProtectedAuth>
           } />
           <Route path="/extra" element={
-          // <ProtectedAuth>
+          <ProtectedAuth>
             <DetailPage />
-          // </ProtectedAuth>
+          </ProtectedAuth>
           } />
           <Route path="/userpage" element={
-          // <ProtectedAuth>
+          <ProtectedAuth>
             <UserWrapper />
-            // </ProtectedAuth>
+          </ProtectedAuth>
           } />
 
         </Routes>

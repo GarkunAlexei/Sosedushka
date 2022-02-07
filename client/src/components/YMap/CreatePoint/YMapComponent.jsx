@@ -1,77 +1,98 @@
 import React from 'react';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
+import Geocode from "react-geocode";
 
-function YMapComponent() {
+const mapState = {
+  center: [55.753994, 37.622093],
+  zoom: 15,
+};
+
+function YMapComponent({ setInput }) {
 
   let myMap;
 
-  const coordsOne = [55.75, 37.57];
-  const coordsTwo = [55.76, 37.58];
-  const coordsThree = [55.74, 37.56];
+  const ymaps = React.useRef(null);
+  const placemarkRef = React.useRef(null);
+  const mapRef = React.useRef(null);
 
-  function myGeoCode(ymaps, myMap, address) {
-    ymaps.geocode(address, {
-      results: 1
-    }).then(function (res) {
-      // Выбираем первый результат геокодирования.
-      let firstGeoObject = res.geoObjects.get(0)
-      // Координаты геообъекта.
-      let coords = firstGeoObject.geometry.getCoordinates()
-      // Область видимости геообъекта.
-      let bounds = firstGeoObject.properties.get('boundedBy');
+  const createPlacemark = (coords) => {
+    return new ymaps.current.Placemark(
+      coords,
+      {
+        iconCaption: "loading.."
+      },
+      {
+        preset: "islands#violetDotIconWithCaption",
+        draggable: true
+      }
+    );
+  };
 
-      firstGeoObject.options.set('preset', 'islands#darkBlueDotIconWithCaption');
-      // Получаем строку с адресом и выводим в иконке геообъекта.
-      //firstGeoObject.properties.set('iconCaption', firstGeoObject.getAddressLine());
+  const getAddress = (coords) => {
+    placemarkRef.current.properties.set("iconCaption", "loading..");
+    ymaps.current.geocode(coords).then((res) => {
+      const firstGeoObject = res.geoObjects.get(0);
 
-      // Добавляем первый найденный геообъект на карту.
-      myMap.geoObjects.add(firstGeoObject);
-      // Масштабируем карту на область видимости геообъекта.
-      myMap.setBounds(bounds, {
-        // Проверяем наличие тайлов на данном масштабе.
-        checkZoomRange: true
+      const newAddress = [
+        firstGeoObject.getLocalities().length
+          ? firstGeoObject.getLocalities()
+          : firstGeoObject.getAdministrativeAreas(),
+        firstGeoObject.getThoroughfare() || firstGeoObject.getPremise()
+      ]
+        .filter(Boolean)
+        .join(", ");
+
+      setInput(prev => ({ ...prev, address: newAddress }))
+
+      placemarkRef.current.properties.set({
+        iconCaption: newAddress,
+        balloonContent: firstGeoObject.getAddressLine()
       });
-
-      let myPlacemark = new ymaps.Placemark(coords, {
-        iconContent: 'моя метка',
-      }, {
-        preset: 'islands#violetStretchyIcon'
-      });
-
-      myPlacemark.events.add('click', function () {
-        alert(address)
-      });
-
-      myMap.geoObjects.add(myPlacemark);
     });
-  }
+  };
 
-  // function init(ymaps, myMap) {
-  //   checkedObjects.forEach(address => myGeoCode(ymaps, myMap, `${address.district.city.name}, ${address.address}`))
-  // }
+  const onMapClick = (e) => {
+    const coords = e.get("coords");
+
+    if (placemarkRef.current) {
+      placemarkRef.current.geometry.setCoordinates(coords);
+    } else {
+      placemarkRef.current = createPlacemark(coords);
+      mapRef.current.geoObjects.add(placemarkRef.current);
+      placemarkRef.current.events.add("dragend", function () {
+        getAddress(placemarkRef.current.geometry.getCoordinates());
+      });
+    }
+    setInput(prev => ({ ...prev, coords: coords }))
+    console.log(typeof coords[0]);
+    getAddress(coords);
+  };
 
   return (
-    <YMaps>
+    <YMaps query={{ apikey: "096e9939-adbb-4550-8b2c-b0d61ef96eb6" }}>
       <div>
-        <Map defaultState={{ center: [55.75, 37.57], zoom: 10 }}
+        <Map 
+          defaultState={{ center: [55.75, 37.57], zoom: 10 }}
           width={450}
           height={300}
-          // instanceRef={ref => (this.Map = ref)}
-          modules={["geolocation", "geocode"]}
-          // onLoad={ymaps => {
-          //   ymaps.ready(() => {
-          //     init(ymaps, myMap)
-          //   });
+          // // instanceRef={ref => (this.Map = ref)}
+          // modules={["geolocation", "geocode"]}
+          // // onLoad={ymaps => {
+          // //   ymaps.ready(() => {
+          // //     init(ymaps, myMap)
+          // //   });
+          // // }}
+          // instanceRef={yaMap => {
+          //   if (yaMap) {
+          //     myMap = yaMap;
+          //   }
           // }}
-          instanceRef={yaMap => {
-            if (yaMap) {
-              myMap = yaMap;
-            }
-          }}
+          modules={["Placemark", "geocode", "geoObject.addon.balloon"]}
+          instanceRef={mapRef}
+          onLoad={(ympasInstance) => (ymaps.current = ympasInstance)}
+          onClick={onMapClick}
+          state={mapState}
         >
-          <Placemark key={1} geometry={coordsOne} />
-          <Placemark key={2} geometry={coordsTwo} />
-          <Placemark key={3} geometry={coordsThree} />
         </Map>
       </div>
     </YMaps>
