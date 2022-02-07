@@ -9,6 +9,7 @@ import { checkUser } from "./redux/actions/userAC";
 
 function App() {
   const dispatch = useDispatch()
+  
   useEffect(() => {
     dispatch(checkUser())
   }, [])

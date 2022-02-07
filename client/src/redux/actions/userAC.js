@@ -1,8 +1,6 @@
 import axios from 'axios'; 
 import { SET_USER } from '../types/userTypes';
 
-
-
 /////  добавление в стор из БД
 export const setUser = (value) => { 
     return { 

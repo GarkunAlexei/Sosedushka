@@ -22,7 +22,6 @@ function ContentS() {
     <Content style={{ padding: '0 300px' }}>
       <div className={style.site_layout_content}>
 
-
        <Routes>
         <Route path="/" element={
           // <ProtectedAuth>
