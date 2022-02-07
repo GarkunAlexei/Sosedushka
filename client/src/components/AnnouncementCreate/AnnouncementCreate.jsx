@@ -3,13 +3,8 @@ import {
   Form,
   Input,
   Button,
-  Radio,
   Select,
-  Cascader,
-  DatePicker,
-  InputNumber,
-  TreeSelect,
-  Switch,
+
 } from 'antd';
 import { Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
@@ -48,6 +43,12 @@ function AnnouncementCreate() {
         name: 'yyy.png',
         status: 'done',
         url: 'http://www.baidu.com/yyy.png',
+      },
+      {
+        uid: '2',
+        name: 'ййй.png',
+        status: 'done',
+        url: 'http://www.baidu.com/iii.png',
       },
     ],
   };

@@ -1,7 +1,7 @@
 import { SET_USER } from "../types/userTypes";
 
 
-export const userReducer = (state = [], action) => {
+export const userReducer = (state = null, action) => {
 
   const {type, payload} = action;
 

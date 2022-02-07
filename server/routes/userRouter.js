@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
-const axios = require('axios');
 const { User } = require('../db/models');
 
 router.route('/check')
@@ -13,13 +12,14 @@ router.route('/check')
 
 router.route('/signup')
 .post(async (req, res) => {
-    const {email, name, password} = req.body;
-    if(email && name && password){
+    const {email, login, password} = req.body;
+    console.log(req.body);
+    if(email && login && password){
         const cryptPass = await bcrypt.hash(password, Number(process.env.SALT_ROUND))
         try{
           const currentUser =  await User.create({...req.body, password:cryptPass})
-          req.session.user = {id:currentUser.id, name:currentUser.name, role_id: currentUser.role_id}
-          return res.json({user:{id:currentUser.id, name:currentUser.name, role_id: currentUser.role_id}})
+          req.session.user = {id:currentUser.id, login:currentUser.login, role_id: currentUser.role_id}
+          return res.json({user:{id:currentUser.id, login:currentUser.login, role_id: currentUser.role_id}})
         }catch(err){
             console.log(err)
             return res.sendStatus(500)
@@ -29,10 +29,32 @@ router.route('/signup')
     }
 });
 
+router.route('/signin')
+.post(async (req, res) => {
+    const {email, password} = req.body;
+    if(email && password){
+        try{
+            const currentUser = await User.findOne({where:{email}})
+            if(currentUser && await bcrypt.compare(password, currentUser.password)){
+                req.session.user = {id:currentUser.id, login:currentUser.login, role_id: currentUser.role_id}
+                return res.json({user:{id:currentUser.id, login:currentUser.login,role_id: currentUser.role_id}})
+            } else {
+                return res.sendStatus(500)
+            }
+        }catch(err){
+            console.log(err)
+            return res.sendStatus(500)
+        }
+    }else{
+        return res.sendStatus(500)
+    }
+
+})
+
 router.route('/logout')
 .post((req, res) => {
     req.session.destroy()
-    res.clearCookie('sid').sendStatus(200)
+    res.clearCookie('somename').sendStatus(200)
 });
 
 module.exports = router;

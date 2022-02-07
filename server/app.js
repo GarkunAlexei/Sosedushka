@@ -4,15 +4,14 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 var session = require('express-session');
-const FileStore = require('session-file-store')(session);
+var FileStore = require('session-file-store')(session);
+
 
 const userRouter = require('./routes/userRouter');
 const rolesRouter = require('./routes/rolesRouter');
 
 const PORT = process.env.PORT ?? 3001;
 const app = express();
-
-app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 
@@ -24,7 +23,7 @@ app.use(cors({
 
 app.use(
   session({
-    name:'sid',
+    name:'somename',
     store: new FileStore({}),
     saveUninitialized: false,
     secret: 'abracadabra777',

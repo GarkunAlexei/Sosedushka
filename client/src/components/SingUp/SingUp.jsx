@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button,  } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getUser } from '../../redux/actions/userAC';
 
 
 function SingUp(props) {
+  const [inputs, setInputs] = useState({login:'', email:'', password:'', role_id:2});
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+  const inputHandler = (e) => {
+    setInputs(prev => ({...prev, [e.target.name]: e.target.value}))
+  };
   
-    const onFinish = (values) => {
-      console.log('Success:', values);
-    };
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(getUser(inputs))
+    setInputs({login:'', email:'', password:'', role_id:2})
+    navigate('/profile')
+  };
+
+  const onFinish = (values) => {
+    console.log('Success:', values);
+  };
   
-    const onFinishFailed = (errorInfo) => {
-      console.log('Failed:', errorInfo);
-    };
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
+
   return (
 <Form style={{minWidth:'400px'}}
       name="basic"
@@ -29,8 +46,7 @@ function SingUp(props) {
       autoComplete="off"
     >
       <Form.Item
-        label="Login"
-        name="login"
+        label="login"
         rules={[
           {
             required: true,
@@ -38,11 +54,16 @@ function SingUp(props) {
           },
         ]}
       >
-        <Input />
+        <Input 
+        type="text"
+        id="login"
+        name="login"
+        onChange={inputHandler}
+        value={inputs.login}
+        />
       </Form.Item>
       <Form.Item
         label="email"
-        name="email"
         rules={[
           {
             required: true,
@@ -50,12 +71,17 @@ function SingUp(props) {
           },
         ]}
       >
-        <Input type='email' />
+        <Input 
+        type='email'
+        id="email"
+        name="email"
+        onChange={inputHandler}
+        value={inputs.email}
+        />
       </Form.Item>
 
       <Form.Item
-        label="Password"
-        name="password"
+        label="password"
         rules={[
           {
             required: true,
@@ -63,7 +89,13 @@ function SingUp(props) {
           },
         ]}
       >
-        <Input.Password />
+        <Input.Password 
+          id="password"
+        name="password"
+        type='password'
+        onChange={inputHandler}
+        value={inputs.password}
+        />
       </Form.Item>
 
       <Form.Item
@@ -72,11 +104,9 @@ function SingUp(props) {
           span: 16,
         }}
       >
-        <Link to={'/account'}>
-        <Button type="primary" htmlType="submit">
+        <Button onClick={submitHandler} type="primary" htmlType="submit">
           Зарегестрироваться
         </Button>
-        </Link>
       </Form.Item>
     </Form>
   );

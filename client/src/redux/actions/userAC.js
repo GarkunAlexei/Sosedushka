@@ -1,5 +1,7 @@
 import axios from 'axios'; 
-import { GET_USERS, SET_USER } from '../types/userTypes';
+import { SET_USER } from '../types/userTypes';
+
+
 
 /////  добавление в стор из БД
 export const setUser = (value) => { 
@@ -8,12 +10,15 @@ export const setUser = (value) => {
         payload: value 
     } 
 } 
+
 export const getUser = (input) => async(dispatch) => { 
-    const response = await axios('/user/signup', input); 
+    console.log(11111111);
+    const response = await axios.post('/user/signup', input); 
+    console.log(response.data);
     dispatch(setUser(response.data.user)) 
 }
 
-export const signUpUser = ( input ) => async ( dispatch ) => {
+export const signInUser = ( input ) => async ( dispatch ) => {
   const response = await axios.post('/user/signin', input)
   dispatch(setUser(response.data.user))
 }

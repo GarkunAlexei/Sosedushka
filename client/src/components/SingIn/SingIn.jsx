@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { signInUser } from '../../redux/actions/userAC';
 
 function SingIn(props) {
+  const [inputs, setInputs] = useState({email:'', password:''});
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const inputHandler = (e) => {
+    setInputs(prev => ({...prev, [e.target.name]: e.target.value}))
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(signInUser(inputs))
+    setInputs({login:'', email:''})
+    navigate('/')
+  };
 
   const onFinish = (values) => {
     console.log('Success:', values);
@@ -28,21 +43,25 @@ function SingIn(props) {
       autoComplete="off"
     >
       <Form.Item
-        label="Login"
-        name="login"
+        label="email"
         rules={[
           {
             required: true,
-            message: 'Please input your Login!',
+            message: 'Please input your Email!',
           },
         ]}
       >
-        <Input />
+        <Input 
+          type="email"
+          id="email"
+          name="email"
+          onChange={inputHandler}
+          value={inputs.email}
+        />
       </Form.Item>
 
       <Form.Item
         label="Password"
-        name="password"
         rules={[
           {
             required: true,
@@ -50,7 +69,13 @@ function SingIn(props) {
           },
         ]}
       >
-        <Input.Password />
+        <Input.Password 
+          id="password"
+          name="password"
+          type='password'
+          onChange={inputHandler}
+          value={inputs.password}
+        />
       </Form.Item>
 
       <Form.Item
@@ -59,11 +84,9 @@ function SingIn(props) {
           span: 16,
         }}
       >
-        <Link to={'/'}>
-        <Button type="primary" htmlType="submit">
+        <Button onClick={submitHandler} type="primary" htmlType="submit">
           Войти
         </Button>
-        </Link>
       </Form.Item>
     </Form>
   );

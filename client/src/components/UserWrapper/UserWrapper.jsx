@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
 import { Card } from 'antd';
+import UserPage from '../UserPage/UserPage';
+import AnnouncementCreate from '../AnnouncementCreate/AnnouncementCreate'
+import FormAccount from '../FormAccount/FormAccaunt';
+
 
 const tabList = [
   {
@@ -7,14 +11,19 @@ const tabList = [
     tab: 'Профиль',
   },
   {
-    key: 'tab2',
-    tab: 'tab2',
+    key: 'profilRedact',
+    tab: 'Редактировать профиль',
+  },
+  {
+    key: 'ad',
+    tab: 'Объявление',
   },
 ];
 
 const contentList = {
-  profil: <p>Профиль</p>,
-  tab2: <p>Мои обьявления</p>,
+  profil: <UserPage/>,
+  profilRedact: <FormAccount/>,
+  ad: <AnnouncementCreate/>,
 };
 
 
@@ -22,7 +31,7 @@ const contentList = {
 
 function UserWrapper(props) {
 
-  const [activeTabKey1, setActiveTabKey1] = useState('tab1');
+  const [activeTabKey1, setActiveTabKey1] = useState('profil');
 
   const onTab1Change = key => {
     setActiveTabKey1(key);
@@ -41,6 +50,7 @@ function UserWrapper(props) {
         }}
       >
         {contentList[activeTabKey1]}
+      
       </Card>
     </>
   );
