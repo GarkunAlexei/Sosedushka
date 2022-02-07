@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Notice, Photo } = require('../db/models')
+const { Notice, Photo, User, Form } = require('../db/models')
 
 
 router.post('/', async(req, res) => {
@@ -21,6 +21,39 @@ router.post('/', async(req, res) => {
     console.log(error);
     res.sendStatus(500);
   }
+})
+
+router.get('/', async (req, res) => {
+  try {
+    const allNotes = await Notice.findAll({include: Photo});
+    // console.log('----------->', allNotes);
+    res.json(allNotes)
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+})
+
+router.get('/:id', async(req, res) => {
+  try {
+    const notice = await Notice.findOne({ where: { id: req.params.id }, include: Photo})
+    // console.log('-------->', notice.user_id);
+    const user = await User.findOne({where: {id: notice.user_id},
+      include: Form
+    })
+
+    const dataObj = {
+      user: user.Form,
+      note: notice
+    }
+
+    console.log('---------->', dataObj);
+    res.json(dataObj);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+  // console.log('-------->', user.Form);
 })
 
 

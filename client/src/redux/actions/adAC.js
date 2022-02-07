@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_AD, GET_ALL_AD } from "../types/adTypes";
+import { ADD_AD, GET_ALL_AD, GET_ONE_AD } from "../types/adTypes";
 
 export const addAd = (value) => async(dispatch) => {
   console.log('VALUE an ACTION ===>', value);

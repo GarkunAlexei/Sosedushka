@@ -49,7 +49,7 @@ function ContentS() {
             <UserWrapper />
           </ProtectedAuth>
           } />
-          <Route path="/extra" element={
+          <Route path="/notice/:id" element={
           <ProtectedAuth>
             <DetailPage />
           </ProtectedAuth>
