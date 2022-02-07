@@ -1,7 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Card, Row, Col } from 'antd';
+import { getForm } from '../../redux/actions/formAC';
 
 function UserPage(props) {
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(getForm())
+  }, [])
+  const user = useSelector(state => state.form)
+
   return (
     <Row>
       <Col span={12}>
@@ -13,12 +22,12 @@ function UserPage(props) {
   </Card>
       </Col>
       <Col span={12}>
-        <h3> Name 27</h3>
-          <h4>Пол: муж</h4>
+        <h3>{user.name}</h3>
+          <h4>Пол: {user['Gender.gender']}</h4>
           <h4>О себе:</h4>
-          <p>Я молодой модный мужик, хочу жить с таким же мужиком</p>
-          <h4>моб. +79261112233</h4>
-          <h4>Бюджет: 300 р </h4>
+          <p>{user.about_me}</p>
+          <h4>моб. {user.phone}</h4>
+          <h4>Бюджет: {user.budget} р </h4>
           <br></br> 
           <br></br>
             <h4>Мои интересы:</h4>
