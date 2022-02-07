@@ -9,8 +9,6 @@ import { Link } from 'react-router-dom';
 
 export const CardFlat = () => {
 
-  //console.log(blue);
-
   return (
     <div className={style.flat_card}>
       <Card>

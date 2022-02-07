@@ -1,1 +1,6 @@
 export const SET_INTEREST = "SET_INTEREST"
+export const SET_CHANGE = "SET_CHANGE"
+
+
+export const DELETE_INTEREST = "DELETE_INTEREST"
+
