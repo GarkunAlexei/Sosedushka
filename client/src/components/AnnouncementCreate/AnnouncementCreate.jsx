@@ -13,6 +13,8 @@ import style from './style.module.css'
 import YMapComponent from '../YMap/CreatePoint/YMapComponent';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { addAd } from '../../redux/actions/adAC';
 
 const { Title } = Typography;
 
@@ -22,6 +24,7 @@ function AnnouncementCreate() {
 
   console.log('...INPUT ====>', {...input});
 
+  const dispatch = useDispatch();
 
   const props = {
     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -44,12 +47,6 @@ function AnnouncementCreate() {
         status: 'done',
         url: 'http://www.baidu.com/yyy.png',
       },
-      {
-        uid: '2',
-        name: 'ййй.png',
-        status: 'done',
-        url: 'http://www.baidu.com/iii.png',
-      },
     ],
   };
 
@@ -59,7 +56,8 @@ function AnnouncementCreate() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setInput({})
+    dispatch(addAd(input))
+    // setInput({})
   }
 
 

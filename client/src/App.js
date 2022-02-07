@@ -10,6 +10,7 @@ import { getInterest } from "./redux/actions/interestAC";
 
 function App() {
   const dispatch = useDispatch()
+  
   useEffect(() => {
     dispatch(checkUser())
     dispatch(getInterest())
