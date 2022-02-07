@@ -6,7 +6,6 @@ import ContentS from "./components/ContentS/ContentS";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { checkUser } from "./redux/actions/userAC";
-import { getInterest } from "./redux/actions/interestAC";
 
 function App() {
   const dispatch = useDispatch()
