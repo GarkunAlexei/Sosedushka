@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInterest } from '../../redux/actions/interestAC';
 import InterestCheckBox from './InterestCheckBox';
-import { Row } from 'antd';
+import { Row, Col } from 'antd';
 
 
 function Interests(props) {
@@ -14,10 +14,14 @@ function Interests(props) {
 
   return (
     <>
-      <b>Выберите свои интересы</b>
+      <b>Добавьте интересы</b>
       
         <Row>
-          {interest.map(el => <InterestCheckBox key={el.id} interest={el.interest} id={el.id} />)}
+          <Col span={12}>
+            <Row>
+              {interest.map(el => <InterestCheckBox key={el.id} interest={el.interest} id={el.id} />)}
+            </Row>
+          </Col>
         </Row>
       
     </>
