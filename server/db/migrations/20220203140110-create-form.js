@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       photo: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       about_me: {
         type: Sequelize.TEXT
