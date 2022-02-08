@@ -6,19 +6,19 @@ import { getAllAd } from '../../redux/actions/adAC';
 
 export const CardList = () => {
 
+  const allNotes = useSelector(state => state.ad)
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllAd())
   }, [])
 
-  const allNotes = useSelector(state => state.ad)
-
   console.log(allNotes);
 
   return (
     <>
-      {allNotes.map(el => <CardFlat key={el.id} id={el.id} address={el.address} cost={el.cost} img={el.Photos[0]}/>)}
+      {allNotes?.map(el => <CardFlat description={el.description} key={el.id} id={el.id} address={el.address} cost={el.cost} img={el.Photos[0]}/>)}
       {/* <CardFlat/> */}
     </>
   );

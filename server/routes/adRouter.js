@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Notice, Photo, User, Form } = require('../db/models')
+const { Notice, Interest, Photo, User, Form } = require('../db/models')
 
 
 router.post('/', async(req, res) => {
@@ -14,7 +14,7 @@ router.post('/', async(req, res) => {
     const notice_id = newNotice.id;
     const photo = img;
     const newNoticePhoto = await Photo.create({ notice_id, photo })
-    const notice = await Notice.findOne({ where: { id: notice_id }, include: Photo, raw: true })
+    const notice = await Notice.findOne({ where: { id: notice_id }, include: Photo})
     console.log(notice);
     res.json(notice)
   } catch (error) {
@@ -41,13 +41,18 @@ router.get('/:id', async(req, res) => {
     const user = await User.findOne({where: {id: notice.user_id},
       include: Form
     })
+    const profile = await Form.findOne({where: {user_id: user.id},
+      include: Interest,
+    });
+    // console.log(profile.Interests);
 
     const dataObj = {
       user: user.Form,
-      note: notice
+      note: notice,
+      interests: profile.Interests,
     }
 
-    console.log('---------->', dataObj);
+    // console.log('---------->', dataObj);
     res.json(dataObj);
   } catch (error) {
     console.log(error);
