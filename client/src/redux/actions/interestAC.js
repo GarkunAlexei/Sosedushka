@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_CHANGE, SET_INTEREST } from '../types/interestTypes';
+import { DELETE_INTEREST, SET_CHANGE, SET_INTEREST } from '../types/interestTypes';
 
 export const setInterest = (value) => {
     return {
@@ -10,8 +10,8 @@ export const setInterest = (value) => {
 
 export const getInterest = () => async (dispatch) => {
     const res = await axios('/interest')
-
-    dispatch(setInterest(res.data.interest))
+    // console.log(res.data.filterInterest);
+    dispatch(setInterest(res.data.filterInterest))
 };
 
 export const setChange = (data) => {
@@ -22,7 +22,21 @@ export const setChange = (data) => {
 }
 
 export const getChange = (id) => async (dispatch) => {
-  console.log('Goooo!');
+  // console.log('Goooo!');
   await axios.post(`/interest/${id}`)
   dispatch(setChange(id))
+}
+
+export const delInterst = (data) => {
+  return {
+    type: DELETE_INTEREST, 
+    payload: data,
+  }
+}
+
+export const delInterest = (id) => async (dispatch) => {
+  const res = await axios.post(`/profile/${id}`)
+  // console.log(result)
+  // console.log(res.data.delInterest)
+  dispatch(delInterst(res.data.delInterest))
 }

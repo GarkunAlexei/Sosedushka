@@ -60,11 +60,6 @@ function ContentS() {
             <UserWrapper />
           </ProtectedAuth>
           } />
-          <Route path="/interest" element={
-          <ProtectedAuth>
-            <Interests />
-          </ProtectedAuth>
-          } />
 
         </Routes>
 

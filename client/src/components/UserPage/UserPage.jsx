@@ -2,11 +2,9 @@ import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card, Row, Col, Button } from 'antd';
 import { getForm, nullForm, nullSetForm } from '../../redux/actions/formAC';
-import { useNavigate } from 'react-router-dom';
 
 function UserPage(props) {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getForm())
@@ -38,7 +36,7 @@ function UserPage(props) {
           <br></br> 
           <br></br>
             <h4>Мои интересы:</h4>
-            <p>{interest?.map(el => <Button onClick={() => {navigate('/interest')}}>{el.interest}</Button>)}</p>
+            <p>{interest?.map(el => <Button>{el.interest}</Button>)}</p>
         </Col>
     </Row>
   );
