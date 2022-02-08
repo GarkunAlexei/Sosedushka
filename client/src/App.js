@@ -6,12 +6,14 @@ import ContentS from "./components/ContentS/ContentS";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { checkUser } from "./redux/actions/userAC";
+import { getAllAd } from "./redux/actions/adAC";
 
 function App() {
   const dispatch = useDispatch()
   
   useEffect(() => {
     dispatch(checkUser())
+    dispatch(getAllAd())
     // dispatch(getInterest())
   }, [])
 
