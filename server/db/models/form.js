@@ -6,12 +6,13 @@ module.exports = (sequelize, DataTypes) => {
   class Form extends Model {
     static associate({Interest, Gender, User}) {
       // define association here
-      this.belongsToMany(Interest, {through: 'Entries', foreignKey: 'hobby_id'});
+      this.belongsToMany(Interest, {through: 'Entries', foreignKey: 'form_id'});
       this.belongsTo(Gender, { foreignKey: 'gender_id' });
       this.belongsTo(User, { foreignKey: 'user_id' });
     }
   }
   Form.init({
+    name: DataTypes.STRING,
     phone: DataTypes.STRING,
     birthday: DataTypes.DATE,
     photo: DataTypes.STRING,

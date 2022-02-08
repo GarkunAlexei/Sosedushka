@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { SET_ROLES } from '../types/rolesTypes';
+import { SET_CHANGE } from '../types/interestTypes';
 
 export const setRoles = (value) => {
     return {
-        type: SET_ROLES,
+        type: SET_CHANGE,
         payload: value
     }
 }

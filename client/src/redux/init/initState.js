@@ -5,4 +5,5 @@ export const initState = {
   // comments: []
   ad: [],
   flatUser: null
+  form: [],
 }

@@ -7,7 +7,10 @@ import { blue } from '@ant-design/colors';
 import { Link } from 'react-router-dom';
 
 
+
 export const CardFlat = ({id, address, cost, img}) => {
+
+
 
   return (
     <div className={style.flat_card}>
