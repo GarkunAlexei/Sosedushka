@@ -4,6 +4,11 @@ import { Card, Row, Col, Button } from 'antd';
 import { getForm, nullForm, nullSetForm } from '../../redux/actions/formAC';
 
 function UserPage(props) {
+
+  const user = useSelector(state => state.form)
+  const gender = user.Gender
+  const interest = user.Interests
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -12,9 +17,7 @@ function UserPage(props) {
       dispatch(nullSetForm())
     }
   }, [])
-  const user = useSelector(state => state.form)
-  const gender = user.Gender
-  const interest = user.Interests
+
 
   return (
     <Row>
@@ -22,7 +25,7 @@ function UserPage(props) {
     <Card
     hoverable
     style={{ width: 240 }}
-    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+    cover={<img alt="example" src={user.photo} />}
   >
   </Card>
       </Col>
