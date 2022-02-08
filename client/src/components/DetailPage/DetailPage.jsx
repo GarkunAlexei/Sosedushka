@@ -5,7 +5,7 @@ import { UserDetail } from '../UserDetail/UserDetail';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOneFlatUser } from '../../redux/actions/flatUserAC';
+import { getOneFlatUser, nullFlatUser } from '../../redux/actions/flatUserAC';
 
 export const DetailPage = () => {
   const params = useParams();
@@ -14,13 +14,10 @@ export const DetailPage = () => {
   const userAnketa = useSelector(state => state.flatUser)
   
   useEffect(() => {
-    if (userAnketa !== null) {
       dispatch(getOneFlatUser(params.id))
-    } else {
-      alert('zhopa')
-      
-    }
-
+      return () => {
+        dispatch(nullFlatUser());
+      }
   }, [])
 
   console.log('----------->', userAnketa);
@@ -30,6 +27,8 @@ export const DetailPage = () => {
 
   return (
     <Row>
+      {userAnketa &&
+      <>
       <Col xs={12}>
         <FlatDetail 
         key={userAnketa.note.id} 
@@ -46,6 +45,8 @@ export const DetailPage = () => {
           about_me={userAnketa.user.about_me}
         />
         </Col>
+        </>
+      }
     </Row>
   );
 };
