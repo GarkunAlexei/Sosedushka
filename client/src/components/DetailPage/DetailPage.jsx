@@ -35,7 +35,7 @@ export const DetailPage = () => {
         address={userAnketa.note.address} 
         description={userAnketa.note.description}
         cost={userAnketa.note.cost}
-        img={userAnketa.note.Photos[0].photo}/>
+        img={userAnketa.note.Photos[0]?.photo}/>
       </Col>
       <Col xs={12}>
         <UserDetail

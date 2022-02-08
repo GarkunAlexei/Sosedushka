@@ -10,6 +10,9 @@ export const interestReducer = (state = [], action) => {
       case SET_CHANGE:
         return state.filter(el => el.id !== Number(payload));
 
+      case DELETE_INTEREST:
+        return [...state, payload];  
+    
       default:
           return state;
   }
