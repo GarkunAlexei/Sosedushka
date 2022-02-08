@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Form, Gender} = require('../db/models');
+const {Form, Gender, Interest} = require('../db/models');
 
 
 router.post('/', async (req, res) => {
@@ -10,7 +10,12 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const forms = await Form.findOne({where: {user_id: req.session.user.id}, include: Gender, raw: true})
+    const forms = await Form.findOne({where: {user_id: req.session.user.id},
+      include: [
+        { model: Gender }, 
+        { model: Interest },
+      ],
+      })
     console.log(forms)
     if(forms){
       return res.json({forms})

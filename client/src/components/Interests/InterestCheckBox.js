@@ -16,7 +16,7 @@ export default function InterestCheckBox({id, interest}) {
   return (
   
   <>
-  <Col span={6}>
+  <Col span={12}>
     <Checkbox id={id} onChange={() => submitHandler(id)}>{interest}</Checkbox>
   </Col>
   {/* { visible && 
