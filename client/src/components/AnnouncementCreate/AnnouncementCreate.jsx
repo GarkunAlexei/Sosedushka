@@ -20,7 +20,7 @@ function AnnouncementCreate() {
   const [progress, setProgress] = useState(0);
   const [images, setImages] = useState([])
   const [urlsAll, setUrlsAll] = useState([])
-  const [input, setInput] = useState({ name: '', coords: null, cost: '', description: '', address: '', img: null })
+  const [input, setInput] = useState({ name: '', coords: null, cost: '', description: '', address: '', img: [null] })
 
   console.log('...INPUT ====>', { ...input });
   console.log('URLS ======>', urlsAll)
@@ -104,25 +104,25 @@ function AnnouncementCreate() {
     });
 
     Promise.all(promises)
-      .then(() => {
-        console.log('ФОТО ЗАГРУЗИЛИСЬ');
-        console.log("PROMISE ===>", urlsAll)
-        setInput(prev => ({ ...prev, img: urlsAll }))
+      .then((data) => {
+        console.log('THEN ФОТО ЗАГРУЗИЛИСЬ');
+        // console.log("PROMISE ===>", urlsAll)
+        // console.log("INPUT ПЕРЕД BACK====>", input)
+        setInput(prev => ({ ...prev, img: [...data] }))
+        // console.log("INPUT TO BACK====>", input)
+        console.log(data);
       })
       .catch((err) => console.log(err))
-
   }
-
   
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('CLICK SUBMIT');
-    console.log('CLICK SUBMIT', urlsAll);
     // const file = e.target[0].files[0]
     // console.log(file);
     // uploadFiles(file)
-    console.log("INPUT TO BACK====>", input)
-    setInput(prev => ({ ...prev, img: [...urlsAll] }))
+
+    // setInput(prev => ({ ...prev, img: [...urlsAll] }))
+
     dispatch(addAd(input))
     // setInput({ name: '', coords: null, cost: '', description: '', address: '', img: null })
   }

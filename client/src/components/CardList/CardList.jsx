@@ -5,12 +5,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllAd } from '../../redux/actions/adAC';
 
 export const CardList = () => {
+
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getAllAd())
   }, [])
 
   const allNotes = useSelector(state => state.ad)
+
+  console.log(allNotes);
 
   return (
     <>
