@@ -5,10 +5,11 @@ const { Notice, Interest, Photo, User, Form } = require('../db/models')
 
 
 router.post('/', async(req, res) => {
-  console.log(req.body);
-  console.log('USER SESSION ===>', req.session.user)
+  // console.log(req.body);
+  // console.log('USER SESSION ===>', req.session.user)
   const user_id = req.session.user.id;
   const { address, description, cost, coords, img } = req.body
+  console.log(req.body);
 
   try {
     const newNotice = await Notice.create({ address, description, cost, coords, user_id })
@@ -17,7 +18,7 @@ router.post('/', async(req, res) => {
     const photo = img;
     const newNoticePhoto = await Photo.create({ notice_id, photo })
     const notice = await Notice.findOne({ where: { id: notice_id }, include: Photo})
-    console.log(notice);
+    // console.log(notice);
     res.json(notice)
   } catch (error) {
     console.log(error);
@@ -27,9 +28,16 @@ router.post('/', async(req, res) => {
 
 router.get('/', async (req, res) => {
   try {
+    const allForms = await Form.findAll();
     const allNotes = await Notice.findAll({include: Photo, raw: true});
-    console.log('----------->', allNotes);
-    res.json(allNotes)
+
+    const allNotesPlusForm = allNotes.map(el => ({...el, 
+      name: (allForms.find(element => element.user_id === el.user_id)).name,
+      avatar: (allForms.find(element => element.user_id === el.user_id)).photo
+    }))
+    // console.log(allNotesPlusForm);
+    res.json(allNotesPlusForm)
+
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
