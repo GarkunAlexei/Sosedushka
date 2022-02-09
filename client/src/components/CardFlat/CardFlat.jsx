@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 
 
-export const CardFlat = ({id, address, cost, img}) => {
+export const CardFlat = ({id, address, cost, img }) => {
 
 
 
@@ -34,7 +34,7 @@ export const CardFlat = ({id, address, cost, img}) => {
           <Col span={5}>
             <Image
               width={250}
-              src={img?.photo}
+              src={img ? img : 'https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png'}
             />
           </Col>
         </Row>
