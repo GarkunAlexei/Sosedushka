@@ -20,10 +20,7 @@ function AnnouncementCreate() {
   const [progress, setProgress] = useState(0);
   const [images, setImages] = useState([])
   const [urlsAll, setUrlsAll] = useState([])
-  const [input, setInput] = useState({ name: '', coords: null, cost: '', description: '', address: '', img: [null] })
-
-  console.log('...INPUT ====>', { ...input });
-  console.log('URLS ======>', urlsAll)
+  const [input, setInput] = useState({ name: '', coords: null, cost: '', description: '', address: '' })
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = () => {
@@ -44,7 +41,6 @@ function AnnouncementCreate() {
 
   const handleChange = (e) => {
 
-    console.log('TARGET ====>', e.target.files);
     for (let i = 0; i < e.target.files.length; i++) {
       const newImage = e.target.files[i];
       newImage["id"] = Math.random()
@@ -55,15 +51,12 @@ function AnnouncementCreate() {
 
   const uploadFiles = () => {
 
-    console.log('uploadFiles');
-
     const promises = []
 
     images.map((image) => {
 
       const storageRef = ref(storage, `/files/${image.name}`)
       const uploadTask = uploadBytesResumable(storageRef, image)
-      // const uploadTask = storage.ref(`/files/${image.name}`).put(image);
 
       promises.push(uploadTask)
 
@@ -77,57 +70,34 @@ function AnnouncementCreate() {
         (err) => {
           console.log(err);
         },
-        // async () => {
-        //   await storage
-        //   .ref('images')
-        //   .child(image.name)
-        //   // .getDownloadURL(uploadTask.snapshot.ref)
-        //   .getDownloadURL()
-        //   .then((urls) => {
-        //     // setInput(prev => ({ ...prev, img: urls }))
-        //     console.log(urls)
-        //   });
-        // }
         async () => {
           await getDownloadURL(uploadTask.snapshot.ref)
-            .then((urls) => {
-              // setInput(prev => ({ ...prev, img: urls }))
-              console.log(urls)
-              setUrlsAll(prev => [...prev, urls])
-              // setInput(prev => ({ ...prev, img: urlsAll }))
-              console.log(urlsAll)
+            .then((url) => {
+              setUrlsAll(prev => [...prev, url])
             });
         }
-
       )
-
     });
 
     Promise.all(promises)
       .then((data) => {
-        console.log('THEN ФОТО ЗАГРУЗИЛИСЬ');
+        // console.log('THEN ФОТО ЗАГРУЗИЛИСЬ');
         // console.log("PROMISE ===>", urlsAll)
         // console.log("INPUT ПЕРЕД BACK====>", input)
-        setInput(prev => ({ ...prev, img: [...data] }))
+        setInput(prev => ({ ...prev, img: [...urlsAll] }))
         // console.log("INPUT TO BACK====>", input)
         console.log(data);
       })
       .catch((err) => console.log(err))
+
   }
   
   const submitHandler = (e) => {
     e.preventDefault();
-    // const file = e.target[0].files[0]
-    // console.log(file);
-    // uploadFiles(file)
 
-    // setInput(prev => ({ ...prev, img: [...urlsAll] }))
-
-    dispatch(addAd(input))
-    // setInput({ name: '', coords: null, cost: '', description: '', address: '', img: null })
+    dispatch(addAd(input, urlsAll))
+    setInput({ name: '', coords: null, cost: '', description: '', address: '' })
   }
-  
-  console.log('INPUT AFTER DOWNLOAD', input);
 
   return (
     <>
@@ -156,9 +126,6 @@ function AnnouncementCreate() {
           </Button> <span></span>
 
           <Modal title="Загрузка фото" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-            {/* <Upload type="file" name="img" onChange={handleChange}>
-              <Button>Выберите файлы</Button>
-            </Upload> */}
             <input type="file" multiple name="img" onChange={handleChange} /> <br />
             <Button icon={<UploadOutlined />} type='submit' onClick={uploadFiles}>Загрузить</Button>
             <Progress percent={progress} size="small" /> {progress} %
