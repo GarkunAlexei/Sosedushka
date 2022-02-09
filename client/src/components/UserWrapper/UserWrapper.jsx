@@ -23,14 +23,14 @@ const tabList = [
     key: 'interests',
     tab: 'Мои интересы',
   },
+
 ];
 
 const contentList = {
   profil: <UserPage/>,
   profilRedact: <FormAccount/>,
   ad: <AnnouncementCreate/>,
-  interests: <Interests/>
-
+  interests: <Interests/>,
 };
 
 

@@ -4,6 +4,7 @@ import { interestReducer } from './interestReducer';
 import { rolesReducer } from './rolesReducer';
 import { userReducer } from './userReducer';
 import { formReducer } from './formReducer';
+import { wsReduser } from './wsReduser';
 
 export const rootReducer = combineReducers({
     user: userReducer,
@@ -11,5 +12,6 @@ export const rootReducer = combineReducers({
     ad: adReducer,
     interest: interestReducer,
     form: formReducer,
+    ws: wsReduser,
 
 });

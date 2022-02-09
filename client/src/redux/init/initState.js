@@ -4,4 +4,6 @@ export const initState = {
   interest: [],
   form: [],
   ad: null,
+  ws: new WebSocket("ws://localhost:3001"), 
+  messages: [],
 }
