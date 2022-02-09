@@ -88,10 +88,8 @@ router.post('/searcher', async(req, res) => {
     include: Photo
   })
   // console.log('---------->', findNotice);
+
   res.json(findNotice);
 })
-
-
-
 
 module.exports = router;
