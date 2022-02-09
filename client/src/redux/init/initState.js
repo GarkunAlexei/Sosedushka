@@ -4,6 +4,6 @@ export const initState = {
   interest: [],
   // comments: []
   ad: [],
-  flatUser: null
+  flatUser: null,
   form: [],
 }
