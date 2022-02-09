@@ -73,6 +73,7 @@ router.get('/:id', async(req, res) => {
 
 router.post('/searcher', async(req, res) => {
   const search = req.body.word;
+  const allForms = await Form.findAll();
 
   // const findNotice = await Notice.findAll({
   //   where: { address: {[Op.iLike]: `%${search}%`}},
@@ -93,29 +94,46 @@ router.post('/searcher', async(req, res) => {
       }
     ] 
   },
-    include: Photo
+    include: Photo, raw: true
   })
-  // console.log('---------->', findNotice);
-
-  res.json(findNotice);
+  // console.log('findNoticefindNoticefindNotice---------->', findNotice);
+  // console.log('allFormsallFormsallForms---------->', allForms);
+  const findNoticePlusForm = findNotice.map(el => ({...el, 
+    name: (allForms.find(element => element.user_id === el.user_id)).name,
+    avatar: (allForms.find(element => element.user_id === el.user_id)).photo
+  }))
+  // console.log(findNoticePlusForm[0]);
+  res.json(findNoticePlusForm);
 })
 
 router.post('/asc', async(req, res) => {
-  console.log('increase');
+  // console.log('increase');
+  const allForms = await Form.findAll();
   const allNotes = await Notice.findAll({
     include: Photo, raw: true,
     order:[['cost', 'ASC']]
   });
-  res.json(allNotes);
+  const allNotesPlusForm = allNotes.map(el => ({...el, 
+    name: (allForms.find(element => element.user_id === el.user_id)).name,
+    avatar: (allForms.find(element => element.user_id === el.user_id)).photo
+  }))
+  console.log(allNotesPlusForm);
+  res.json(allNotesPlusForm)
 })
 
 router.post('/desc', async(req, res) => {
-  console.log('decrease');
+  // console.log('decrease');
+  const allForms = await Form.findAll();
   const allNotes = await Notice.findAll({
     include: Photo, raw: true,
     order:[['cost', 'DESC']]
   });
-  res.json(allNotes);
+  const allNotesPlusForm = allNotes.map(el => ({...el, 
+    name: (allForms.find(element => element.user_id === el.user_id)).name,
+    avatar: (allForms.find(element => element.user_id === el.user_id)).photo
+  }))
+  console.log(allNotesPlusForm);
+  res.json(allNotesPlusForm)
 })
 
 module.exports = router;
