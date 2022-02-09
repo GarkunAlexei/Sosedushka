@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_AD, GET_ALL_AD, GET_ONE_AD } from "../types/adTypes";
+import { ADD_AD, GET_ALL_AD, GET_FIND_AD, GET_ONE_AD } from "../types/adTypes";
 
 export const addAd = (value) => async(dispatch) => {
   console.log('VALUE an ACTION ===>', value);
@@ -12,4 +12,10 @@ export const addAd = (value) => async(dispatch) => {
 export const getAllAd = () => async(dispatch) => {
   const response = await axios('/notice')
   dispatch({ type: GET_ALL_AD, payload: response.data})
+}
+
+export const getFindAd = (word) => async(dispatch) => {
+  const response = await axios.post('/notice/searcher', {word})
+  console.log(response.data);
+  dispatch({ type: GET_FIND_AD, payload: response.data})
 }

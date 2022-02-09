@@ -1,5 +1,7 @@
 const router = require('express').Router();
+const { Op } = require("sequelize")
 const { Notice, Interest, Photo, User, Form } = require('../db/models')
+
 
 
 router.post('/', async(req, res) => {
@@ -59,6 +61,13 @@ router.get('/:id', async(req, res) => {
     res.sendStatus(500);
   }
   // console.log('-------->', user.Form);
+})
+
+router.post('/searcher', async(req, res) => {
+  const search = req.body.word;
+  const findNotice = await Notice.findAll({where:{ address: {[Op.substring]: `${search}`}}, include: Photo})
+  console.log('---------->', findNotice);
+  res.json(findNotice);
 })
 
 
