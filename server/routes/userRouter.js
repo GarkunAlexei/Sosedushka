@@ -13,7 +13,7 @@ router.route('/check')
 router.route('/signup')
 .post(async (req, res) => {
     const {email, login, password} = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     if(email && login && password){
         const cryptPass = await bcrypt.hash(password, Number(process.env.SALT_ROUND))
         try{

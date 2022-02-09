@@ -17,6 +17,7 @@ export const CardList = () => {
   const allNotes = useSelector(state => state.ad)
   const dispatch = useDispatch();
   const navigate = useNavigate()
+    console.log(allNotes[0]);
 
   useEffect(() => {
     dispatch(getAllAd())
@@ -50,11 +51,15 @@ export const CardList = () => {
             }
           >
             <List.Item.Meta
-              // avatar={<Avatar src={item['Photos.photo']} />}
+              avatar={<Avatar src={item.avatar} />}
               title={item.address}
-              // description={item.description}
+              description={`Стоимость: ${item.cost} ₽`}
             />
             {item.description}
+            <br/>
+            <br/>
+            {`Автор обьявления: ${item.name}`}
+            {/* {console.log(item['Photos.photo'])} */}
             <br/>
             <br/>
             <Button onClick={() => {navigate(`/notice/${item.id}`)}}>Подробнее</Button>
