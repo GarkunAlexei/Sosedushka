@@ -12,6 +12,7 @@ import { Routes, Route } from 'react-router-dom';
 import AuthUser from '../ProtectedAuth/AuthUser';
 import ProtectedAuth from '../ProtectedAuth/ProtectedAuth';
 import UserPage from '../UserPage/UserPage';
+import Interests from '../Interests/Interests';
 
 const { Content } = Layout;
 

@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Photo.init({
-    photo: DataTypes.TEXT,
+    photo: DataTypes.JSONB,
     notice_id: DataTypes.INTEGER
   }, {
     sequelize,

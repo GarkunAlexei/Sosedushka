@@ -1,29 +1,34 @@
 import React, { useState } from 'react';
-import { Checkbox, Col } from 'antd';
-import { getChange } from '../../redux/actions/interestAC';
+import { Button, Col } from 'antd';
+import { delInterest, getChange } from '../../redux/actions/interestAC';
 import { useDispatch } from 'react-redux';
 
 
-export default function InterestCheckBox({id, interest}) {
+export default function InterestCheckBox({id, interest, button, status}) {
   // const [visible, setVisible] = useState(true);
 
   const dispatch = useDispatch()
   const submitHandler = (id) => {
       dispatch(getChange(id))
-      // setVisible(!visible)
+    }
+    const deleteHandler = (id) => {
+      dispatch(delInterest(id))
     }
 
   return (
   
   <>
-  <Col span={6}>
-    <Checkbox id={id} onChange={() => submitHandler(id)}>{interest}</Checkbox>
+  <Col span={12}>
+    <Button type={button} block id={id} onClick={() => submitHandler(id)}>{interest}</Button>
   </Col>
-  {/* { visible && 
+  {status &&
+  <>
+    <Col span={6}></Col>
     <Col span={6}>
-      <Checkbox id={id} onChange={() => submitHandler(id)}>{interest}</Checkbox>
+      <Button block danger id={id} onClick={() => deleteHandler(id)}>Удалить</Button>
     </Col>
-  } */}
+  </>
+  }
   </>
   );
 }

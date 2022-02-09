@@ -64,7 +64,7 @@ function YMapComponent({ setInput }) {
       });
     }
     setInput(prev => ({ ...prev, coords: coords }))
-    console.log(typeof coords[0]);
+    // console.log(typeof coords[0]);
     getAddress(coords);
   };
 

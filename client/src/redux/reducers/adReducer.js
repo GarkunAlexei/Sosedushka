@@ -1,6 +1,6 @@
 import { ADD_AD, GET_ALL_AD, GET_FIND_AD, GET_ONE_AD } from "../types/adTypes";
 
-export const adReducer = (state = null, action) => {
+export const adReducer = (state = [], action) => {
 
   const { type, payload } = action;
 
@@ -9,7 +9,7 @@ export const adReducer = (state = null, action) => {
           return payload;
 
       case ADD_AD:
-          return payload;
+          return [...state, payload];
 
       case GET_ONE_AD:
           return payload;

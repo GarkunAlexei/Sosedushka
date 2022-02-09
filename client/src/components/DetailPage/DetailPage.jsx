@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneFlatUser, nullFlatUser } from '../../redux/actions/flatUserAC';
+import { getForm, nullSetForm } from '../../redux/actions/formAC';
 
 export const DetailPage = () => {
   const params = useParams();
@@ -15,8 +16,10 @@ export const DetailPage = () => {
   
   useEffect(() => {
       dispatch(getOneFlatUser(params.id))
+      dispatch(getForm())
       return () => {
         dispatch(nullFlatUser());
+        dispatch(nullSetForm())
       }
   }, [])
 
@@ -35,7 +38,7 @@ export const DetailPage = () => {
         address={userAnketa.note.address} 
         description={userAnketa.note.description}
         cost={userAnketa.note.cost}
-        img={userAnketa.note.Photos[0].photo}/>
+        img={userAnketa.note.Photos[0]?.photo}/>
       </Col>
       <Col xs={12}>
         <UserDetail
