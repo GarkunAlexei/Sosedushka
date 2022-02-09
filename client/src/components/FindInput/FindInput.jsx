@@ -31,13 +31,14 @@ export const FindInput = () => {
     <div className={style.find_input}>
       <Space>
         <Search
-          placeholder="Поиск по адресу"
+          placeholder="Введите адрес или стоимость аренды"
           allowClear
           enterButton="Поиск"
           size="large"
           value={input}
           onChange={changeHandler}
           onSearch={onSearch}
+          style={{ width: 420 }}
         />
       </Space>
     </div>

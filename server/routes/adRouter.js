@@ -65,8 +65,29 @@ router.get('/:id', async(req, res) => {
 
 router.post('/searcher', async(req, res) => {
   const search = req.body.word;
-  const findNotice = await Notice.findAll({where:{ address: {[Op.substring]: `${search}`}}, include: Photo})
-  console.log('---------->', findNotice);
+
+  // const findNotice = await Notice.findAll({
+  //   where: { address: {[Op.iLike]: `%${search}%`}},
+  //   include: Photo
+  // })
+
+  const findNotice = await Notice.findAll({
+    where: { [Op.or]: [
+      {
+        address: {
+          [Op.iLike]: `%${search}%`
+        },
+      },
+      {
+        cost: {
+          [Op.iLike]: `%${search}%`
+        }
+      }
+    ] 
+  },
+    include: Photo
+  })
+  // console.log('---------->', findNotice);
   res.json(findNotice);
 })
 
