@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_AD, GET_ALL_AD, GET_FIND_AD, GET_ONE_AD } from "../types/adTypes";
+import { ADD_AD, GET_ALL_AD, GET_FIND_AD, SORT_AD_BY_DESC_COST, SORT_AD_BY_INC_COST } from "../types/adTypes";
 
 export const addAd = (value, urls) => async(dispatch) => {
   console.log('VALUE an ACTION ===>', value);
@@ -20,6 +20,29 @@ export const getAllAd = () => async(dispatch) => {
 
 export const getFindAd = (word) => async(dispatch) => {
   const response = await axios.post('/notice/searcher', {word})
-  console.log(response.data);
+  // console.log(response.data);
   dispatch({ type: GET_FIND_AD, payload: response.data})
+}
+
+export const sortAdByIncCost = (value) => {
+  return {
+    type: SORT_AD_BY_INC_COST, 
+    payload: value
+  }
+}
+export const getSortAdByInc = (data) => async(dispatch) => {
+  const response = await axios.post('/notice/asc')
+  dispatch(sortAdByIncCost(response.data))
+}
+
+export const sortAdByDescCost = (value) => {
+  return {
+    type: SORT_AD_BY_DESC_COST, 
+    payload: value
+  }
+}
+
+export const getSortAdByDesc = (data) => async(dispatch) => {
+  const response = await axios.post('/notice/desc')
+  dispatch(sortAdByDescCost(response.data))
 }

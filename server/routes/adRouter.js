@@ -30,12 +30,14 @@ router.get('/', async (req, res) => {
   try {
     const allForms = await Form.findAll();
     const allNotes = await Notice.findAll({include: Photo, raw: true});
+
     const allNotesPlusForm = allNotes.map(el => ({...el, 
       name: (allForms.find(element => element.user_id === el.user_id)).name,
       avatar: (allForms.find(element => element.user_id === el.user_id)).photo
     }))
     // console.log(allNotesPlusForm);
     res.json(allNotesPlusForm)
+
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -96,6 +98,24 @@ router.post('/searcher', async(req, res) => {
   // console.log('---------->', findNotice);
 
   res.json(findNotice);
+})
+
+router.post('/asc', async(req, res) => {
+  console.log('increase');
+  const allNotes = await Notice.findAll({
+    include: Photo, raw: true,
+    order:[['cost', 'ASC']]
+  });
+  res.json(allNotes);
+})
+
+router.post('/desc', async(req, res) => {
+  console.log('decrease');
+  const allNotes = await Notice.findAll({
+    include: Photo, raw: true,
+    order:[['cost', 'DESC']]
+  });
+  res.json(allNotes);
 })
 
 module.exports = router;
