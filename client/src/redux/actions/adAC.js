@@ -11,7 +11,7 @@ export const addAd = (value) => async(dispatch) => {
 
 export const getAllAd = () => async(dispatch) => {
   const response = await axios('/notice')
-  console.log(response.data);
+  // console.log(response.data);
   dispatch({ type: GET_ALL_AD, payload: response.data})
 }
 
