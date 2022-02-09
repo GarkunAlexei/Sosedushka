@@ -25,8 +25,8 @@ router.post('/', async(req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const allNotes = await Notice.findAll({include: Photo});
-    console.log('----------->', allNotes);
+    const allNotes = await Notice.findAll({include: Photo, raw: true});
+    console.log('----------->', allNotes[0]);
     res.json(allNotes)
   } catch (error) {
     console.log(error);
