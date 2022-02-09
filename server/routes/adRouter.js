@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
       name: (allForms.find(element => element.user_id === el.user_id)).name,
       avatar: (allForms.find(element => element.user_id === el.user_id)).photo
     }))
-    // console.log(allNotesPlusForm);
+    console.log(allNotesPlusForm);
     res.json(allNotesPlusForm)
   } catch (error) {
     console.log(error);

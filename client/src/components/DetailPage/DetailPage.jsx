@@ -23,7 +23,6 @@ export const DetailPage = () => {
       }
   }, [])
 
-  console.log('----------->', userAnketa);
   // console.log('----------->', userAnketa);
   // console.log('----------->', userAnketa.note.Photos[0].photo);
   // console.log('----------->', userAnketa.user);
