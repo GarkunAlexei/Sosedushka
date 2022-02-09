@@ -28,7 +28,7 @@ router.post('/', async(req, res) => {
 router.get('/', async (req, res) => {
   try {
     const allNotes = await Notice.findAll({include: Photo, raw: true});
-    console.log('----------->', allNotes[0]);
+    console.log('----------->', allNotes);
     res.json(allNotes)
   } catch (error) {
     console.log(error);
@@ -90,6 +90,24 @@ router.post('/searcher', async(req, res) => {
   // console.log('---------->', findNotice);
 
   res.json(findNotice);
+})
+
+router.post('/asc', async(req, res) => {
+  console.log('increase');
+  const allNotes = await Notice.findAll({
+    include: Photo, raw: true,
+    order:[['cost', 'ASC']]
+  });
+  res.json(allNotes);
+})
+
+router.post('/desc', async(req, res) => {
+  console.log('decrease');
+  const allNotes = await Notice.findAll({
+    include: Photo, raw: true,
+    order:[['cost', 'DESC']]
+  });
+  res.json(allNotes);
 })
 
 module.exports = router;
