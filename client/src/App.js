@@ -1,4 +1,4 @@
-
+import './App.less';
 import HeaderNav from "./components/HeaderNav/HeaderNav";
 import { Layout } from 'antd';
 import FooterS from "./components/FooterS/FooterS";
@@ -9,6 +9,7 @@ import { checkUser } from "./redux/actions/userAC";
 import { getAllAd } from "./redux/actions/adAC";
 
 function App() {
+  
   const dispatch = useDispatch()
   
   useEffect(() => {

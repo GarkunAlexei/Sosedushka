@@ -8,7 +8,7 @@ const ProtectedAuth = ({ children }) => {
     // console.log('==>>>protect')
     // console.log(user);
     if(!user){
-       return <Navigate to="/singin" state={{ from: location }} replace />;
+       return <Navigate to="/signin" state={{ from: location }} replace />;
     } else {
       return children;
     }

@@ -7,6 +7,7 @@ router.post('/', async(req, res) => {
   console.log('USER SESSION ===>', req.session.user)
   const user_id = req.session.user.id;
   const { address, description, cost, coords, img } = req.body
+  console.log(req.body);
 
   try {
     const newNotice = await Notice.create({ address, description, cost, coords, user_id })

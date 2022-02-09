@@ -5,7 +5,7 @@
   background: #fff;
 }
 
-#components-layout-demo-top .logo {
+/* #components-layout-demo-top .logo {
   float: left;
   width: 120px;
   height: 31px;
@@ -16,4 +16,4 @@
 .ant-row-rtl #components-layout-demo-top .logo {
   float: right;
   margin: 16px 0 16px 24px;
-}
+} */

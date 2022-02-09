@@ -1,14 +1,13 @@
 import React from 'react';
-import { Layout, Menu, Button } from 'antd';
 import style from './style.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogout } from '../../redux/actions/userAC';
-const { Header } = Layout;
+import { ButtonNav } from './ButtonNav';
 
 function HeaderNav() {
   const user = useSelector(state => state.user)
-  
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,40 +17,47 @@ function HeaderNav() {
   };
 
   return (
-    <Header>
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} className={style.position_menu}>
-        <div>
-          <Link to={'/'}>
-            <Menu.Item ><span className={style.logo_name}>Соседушка</span></Menu.Item>
-          </Link>
-        </div>
-        <div className={style.menu}>
-          {user
-            ?
-            <>
-              <Link to={'/profile'}>
-                <Menu.Item >Личный кабинет</Menu.Item>
-              </Link>
-              <Link to={'/'}>
-                <Menu.Item >Главная</Menu.Item>
-              </Link>
-              <Menu.Item >
-                <Button type="primary" danger ghost onClick={logoutHandler} >Выйти</Button>
-              </Menu.Item>
-            </>
-            :
-            <>
-              <Link to={'/singin'}>
-                <Menu.Item >Войти</Menu.Item>
-              </Link>
-              <Link to={'/singup'}>
-                <Menu.Item >Регистация</Menu.Item>
-              </Link>
-            </>
-          }
-        </div>
-      </Menu>
-    </Header>
+    <nav className={style.NavbarItems}>
+
+      <h1 className={style.navbar_logo}>Соседушка<i className='fa-solid fa-users'></i></h1>
+
+      <ul className={style.nav_menu}>
+
+        {user ?
+
+          <>
+            <Link to={'/profile'}>
+              <li key="1">
+                <span className={style.nav_links}>Личный кабинет</span>
+              </li>
+            </Link>
+
+            <Link to={'/'}>
+              <li key="2">
+                <span className={style.nav_links}>Главная</span>
+              </li>
+            </Link>
+
+            <li key="3">
+              <span className={style.nav_links} onClick={logoutHandler}>Выйти</span>
+            </li>
+
+          </>
+          :
+          <>
+
+            <Link to={'/signin'}>
+              <li key="4">
+                <span className={style.nav_links}>Войти</span>
+              </li>
+            </Link>
+
+            <Link to={'/signup'}><ButtonNav>Регистация</ButtonNav></Link>
+          </>
+        }
+
+      </ul>
+    </nav>
   )
 }
 
