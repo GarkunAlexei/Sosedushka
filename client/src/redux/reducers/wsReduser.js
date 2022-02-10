@@ -1,5 +1,5 @@
 import { initState } from "../init/initState";
-import { WS_CONNECT, NEW_MESSAGE } from "../types/wsTypes";
+import { WS_CONNECT } from "../types/wsTypes";
 
 
 export const wsReduser = (state = initState, action) => {
@@ -11,9 +11,6 @@ export const wsReduser = (state = initState, action) => {
       
       return new WebSocket("ws://localhost:3001");
 
-    case NEW_MESSAGE: 
-      return [...state, payload]
-  
     default:
       return state;
   }

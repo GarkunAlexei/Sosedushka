@@ -3,10 +3,10 @@ import { adReducer } from './adReducer';
 import { interestReducer } from './interestReducer';
 import { rolesReducer } from './rolesReducer';
 import { userReducer } from './userReducer';
-
 import {flatUserReducer} from './flatUserReducer'
-
 import { formReducer } from './formReducer';
+import { messagesReducer } from './messagesReducer';
+import { wsReduser } from './wsReduser';
 
 
 export const rootReducer = combineReducers({
@@ -16,5 +16,6 @@ export const rootReducer = combineReducers({
     interest: interestReducer,
     flatUser: flatUserReducer,
     form: formReducer,
-    // ws: wsReduse,
+    ws: wsReduser,
+    messages: messagesReducer
 });
