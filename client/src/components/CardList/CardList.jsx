@@ -46,12 +46,6 @@ export const CardList = () => {
         grid={{
           gutter: 16,
           column: 2,
-          // xs: 1,
-          // sm: 2,
-          // md: 4,
-          // lg: 4,
-          // xl: 8,
-          // xxl: 3,
         }}
 
         dataSource={allNotes}

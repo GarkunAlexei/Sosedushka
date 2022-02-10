@@ -66,9 +66,6 @@ export const FindInput = () => {
 
       </Space>
 
-      {/* <div className={style.div_select}>
-      </div> */}
-
     </div>
   );
 };

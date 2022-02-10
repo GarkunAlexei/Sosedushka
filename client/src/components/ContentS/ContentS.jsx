@@ -12,17 +12,22 @@ import AuthUser from '../ProtectedAuth/AuthUser';
 import ProtectedAuth from '../ProtectedAuth/ProtectedAuth';
 
 import Chat from '../Chat/Chat';
+import { useSelector } from 'react-redux';
 
 const { Content } = Layout;
 
 
 function ContentS() {
+
+  const user = useSelector(state => state.user)
   
   return (
     <Content style={{ padding: '50px 200px' }}>
-      <div className={style.site_layout_content}>
+
+      <div className={ !!user ? style.site_layout_content : style.site_layout_clear}>
 
         <Routes>
+
         <Route path="/" element={
           // <ProtectedAuth>
             <MainPage />
@@ -64,12 +69,12 @@ function ContentS() {
           </ProtectedAuth>
           } />
 
-          
           <Route path="/chat" element={<Chat/>}/>
 
         </Routes>
 
       </div>
+
     </Content>
   )
 }
