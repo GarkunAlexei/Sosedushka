@@ -11,11 +11,18 @@ const rolesRouter = require('./routes/rolesRouter');
 const adRouter = require('./routes/adRouter');
 const interestRouter = require('./routes/interestRouter');
 const formRouter = require('./routes/formRouter');
+const WebSocket = require('ws');
 
-const PORT = process.env.PORT ?? 3001;
+
+const map = new Map();// for ws
+const http = require('http');
 const app = express();
+const PORT = process.env.PORT || 3001;
 app.use(morgan('dev'));
 app.use(express.json());
+
+
+
 
 //необходим для авторизации
 app.use(cors({
@@ -23,15 +30,14 @@ app.use(cors({
   origin: 'http://localhost:3000',
 }));
 
-app.use(
-  session({
-    name:'somename',
-    store: new FileStore({}),
-    saveUninitialized: false,
-    secret: 'abracadabra777',
-    resave: false,
-  })
-);
+const sessionParser = session({
+  name:'somename',
+  store: new FileStore({}),
+  saveUninitialized: false,
+  secret: 'abracadabra777',
+  resave: false,
+})
+app.use(sessionParser);
 
 app.use('/user', userRouter);
 app.use('/roles', rolesRouter);
@@ -39,6 +45,46 @@ app.use('/notice', adRouter);
 app.use('/interest', interestRouter);
 app.use('/profile', formRouter);
 
-app.listen(PORT, () => {
+
+//WS
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ clientTracking: false, noServer: true });
+
+server.on('upgrade', function (request, socket, head) {
+  console.log('Parsing session from request...');
+
+  sessionParser(request, {}, () => {
+
+    if (!request.session.user) {
+      socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n');
+      socket.destroy();
+      return;
+    }
+
+    console.log('Session is parsed!');
+
+    wss.handleUpgrade(request, socket, head, function (ws) {
+      wss.emit('connection', ws, request);
+    });
+  });
+});
+
+wss.on('connection', function (ws, request) {
+  const userId = request.session.user.id
+  const name = request.session.user.login
+  console.log(request.session.user)
+
+  map.set(userId, ws);
+
+  ws.on('message', function (message) {
+    console.log(`Received message ${message} from user: ${name}`);
+    for(const [userId, wsClient] of map){
+      wsClient.send(`${name} : ${message}`)
+    }
+  });
+});
+// WS CLOSED
+
+server.listen(PORT, () => {
     console.log('server start on port ', PORT)
 })

@@ -6,4 +6,6 @@ export const initState = {
   ad: [],
   flatUser: null,
   form: [],
+  ws: new WebSocket("ws://localhost:3001"), 
+  messages: [],
 }
