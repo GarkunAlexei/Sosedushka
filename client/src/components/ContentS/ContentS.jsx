@@ -13,6 +13,7 @@ import AuthUser from '../ProtectedAuth/AuthUser';
 import ProtectedAuth from '../ProtectedAuth/ProtectedAuth';
 import UserPage from '../UserPage/UserPage';
 import Interests from '../Interests/Interests';
+import Chat from '../Chat/Chat';
 
 const { Content } = Layout;
 
@@ -60,6 +61,7 @@ function ContentS() {
             <UserWrapper />
           </ProtectedAuth>
           } />
+          <Route path="chat" element={Chat}/>
 
         </Routes>
 
