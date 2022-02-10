@@ -27,15 +27,16 @@ function HeaderNav() {
         {user ?
 
           <>
-            <Link to={'/profile'}>
+
+            <Link to={'/'}>
               <li key="1">
-                <span className={style.nav_links}>Личный кабинет</span>
+                <span className={style.nav_links}>Главная</span>
               </li>
             </Link>
 
-            <Link to={'/'}>
+            <Link to={'/profile'}>
               <li key="2">
-                <span className={style.nav_links}>Главная</span>
+                <span className={style.nav_links}>Личный кабинет</span>
               </li>
             </Link>
 

@@ -16,5 +16,5 @@ export const rootReducer = combineReducers({
     interest: interestReducer,
     flatUser: flatUserReducer,
     form: formReducer,
-    ws: wsReduser,
+    // ws: wsReduse,
 });

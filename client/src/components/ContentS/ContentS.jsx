@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Layout } from 'antd';
-import style from './style.module.css'
+import style from './style.module.css';
 import SingUp from '../SingUp/SingUp';
 import SingIn from '../SingIn/SingIn';
 import FormAccount from '../FormAccount/FormAccaunt';
