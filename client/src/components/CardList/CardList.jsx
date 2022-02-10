@@ -21,7 +21,7 @@ export const CardList = () => {
   const allNotes = useSelector(state => state.ad)
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  console.log(allNotes[0]);
+  // console.log(allNotes[0]);
 
   useEffect(() => {
     dispatch(getAllAd())

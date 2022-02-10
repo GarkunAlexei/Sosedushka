@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, Typography, Space, Row, Button } from 'antd'
 import { useSelector } from 'react-redux';
+import CarouselElement from '../Carousel/Carousel';
 
 export const FlatDetail = () => {
   const{Title, Text} = Typography;
@@ -19,10 +20,11 @@ export const FlatDetail = () => {
         <>
         <Title level={3}>{userAnketa.note.address}</Title>
       
-          <Image
+          {/* <Image
             width={600}
             src={userAnketa.note.Photos[0].photo}
-          />
+          /> */}
+          <CarouselElement/>
         <div>
         <Space direction="vertical">
         <Title level={5}>
