@@ -95,7 +95,7 @@ function FormAccountChange(props) {
         <Input name="phone" type="tel" defaultValue="+7 " value={input.phone} onChange={inputHandler} />
       </Form.Item>
       <Form.Item label="Выбери пол">
-        <Select onChange={selectHandler} value='Мужской'>
+        <Select onChange={selectHandler} defaultValue='Мужской'>
           <Select.Option name="gender_id" value="1">Мужской</Select.Option>
           <Select.Option name="gender_id" value="2">Женский</Select.Option>
           <Select.Option name="gender_id" value="3">Другое...</Select.Option>
