@@ -7,6 +7,8 @@ import { userReducer } from './userReducer';
 import {flatUserReducer} from './flatUserReducer'
 
 import { formReducer } from './formReducer';
+import { messagesReducer } from './messagesReducer';
+import { wsReduser } from './wsReduser';
 
 
 export const rootReducer = combineReducers({
@@ -17,4 +19,6 @@ export const rootReducer = combineReducers({
     flatUser: flatUserReducer,
     form: formReducer,
     ws: wsReduser,
+    messages: messagesReducer
+
 });

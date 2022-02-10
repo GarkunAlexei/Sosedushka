@@ -1,25 +1,25 @@
-
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import style from './style.module.css'
 
 import { Button, Input } from 'antd';
-import { addMessage } from '../../redux/actions/wsAC';
+import { setMessage } from '../../redux/actions/wsAC';
 import { useDispatch } from 'react-redux';
 
 
 function Chat(props) {
-  const [messages, setMessages] = useState([]);
+  //const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   //const messagesRef = React.useRef(null);
   const dispatch = useDispatch()
 
 
   const ws = useSelector(state => state.ws)
-  //const message = useSelector(state => state.messages) 
+  const messages = useSelector(state => state.messages) 
   const name = useSelector(state => state.form)
 
+  console.log(messages)
   
   console.log(name)
 
@@ -28,15 +28,16 @@ function Chat(props) {
   };
 
   ws.onmessage = function (event) {
-    setMessages(prev => [...prev, event.data])
+    //setMessages(prev => [...prev, event.data])
+    dispatch(setMessage(event.data))  
+
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
       console.log(input);
       ws.send(input)
-      dispatch(addMessage(input))  
-      setInput ('')
+      setInput('')
   }
   // React.useEffect(() => {
   //   messagesRef.current.scrollTo(0, 99999);
@@ -57,12 +58,12 @@ function Chat(props) {
           </div>
         ))}
       </div>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} >
         <Input
           onChange={(e) => setInput(e.target.value)}
           value={input}
           className="form-control"/>
-        <Button>Отправить</Button>
+        <Button disabled={!input.length} onclick={submitHandler}>Отправить</Button>
       </form>
     </div>
   </div>
