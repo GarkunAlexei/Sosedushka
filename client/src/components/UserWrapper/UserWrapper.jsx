@@ -46,7 +46,7 @@ function UserWrapper(props) {
   return (
     <>
       <Card
-        style={{ width: '100%' }}
+        style={{ width: '100%', height: '100vh' }}
         title="Личный кабинет"
         tabList={tabList}
         activeTabKey={activeTabKey1}
