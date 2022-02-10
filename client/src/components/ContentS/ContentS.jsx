@@ -6,7 +6,7 @@ import SingIn from '../SingIn/SingIn';
 import FormAccount from '../FormAccount/FormAccaunt';
 import AnnouncementCreate from '../AnnouncementCreate/AnnouncementCreate';
 import { MainPage } from '../MainPage/MainPage';
-import { DetailPage } from '../DetailPage/DetailPage';
+import DetailPage from '../DetailPage/DetailPage';
 import UserWrapper from '../UserWrapper/UserWrapper';
 import { Routes, Route } from 'react-router-dom';
 import AuthUser from '../ProtectedAuth/AuthUser';
