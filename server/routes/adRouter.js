@@ -30,12 +30,14 @@ router.get('/', async (req, res) => {
   try {
     const allForms = await Form.findAll();
     const allNotes = await Notice.findAll({include: Photo, raw: true});
+
     const allNotesPlusForm = allNotes.map(el => ({...el, 
       name: (allForms.find(element => element.user_id === el.user_id)).name,
       avatar: (allForms.find(element => element.user_id === el.user_id)).photo
     }))
-    // console.log(allNotesPlusForm);
+    console.log(allNotesPlusForm);
     res.json(allNotesPlusForm)
+
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -71,6 +73,7 @@ router.get('/:id', async(req, res) => {
 
 router.post('/searcher', async(req, res) => {
   const search = req.body.word;
+  const allForms = await Form.findAll();
 
   // const findNotice = await Notice.findAll({
   //   where: { address: {[Op.iLike]: `%${search}%`}},
@@ -91,11 +94,46 @@ router.post('/searcher', async(req, res) => {
       }
     ] 
   },
-    include: Photo
+    include: Photo, raw: true
   })
-  // console.log('---------->', findNotice);
+  // console.log('findNoticefindNoticefindNotice---------->', findNotice);
+  // console.log('allFormsallFormsallForms---------->', allForms);
+  const findNoticePlusForm = findNotice.map(el => ({...el, 
+    name: (allForms.find(element => element.user_id === el.user_id)).name,
+    avatar: (allForms.find(element => element.user_id === el.user_id)).photo
+  }))
+  // console.log(findNoticePlusForm[0]);
+  res.json(findNoticePlusForm);
+})
 
-  res.json(findNotice);
+router.post('/asc', async(req, res) => {
+  // console.log('increase');
+  const allForms = await Form.findAll();
+  const allNotes = await Notice.findAll({
+    include: Photo, raw: true,
+    order:[['cost', 'ASC']]
+  });
+  const allNotesPlusForm = allNotes.map(el => ({...el, 
+    name: (allForms.find(element => element.user_id === el.user_id)).name,
+    avatar: (allForms.find(element => element.user_id === el.user_id)).photo
+  }))
+  console.log(allNotesPlusForm);
+  res.json(allNotesPlusForm)
+})
+
+router.post('/desc', async(req, res) => {
+  // console.log('decrease');
+  const allForms = await Form.findAll();
+  const allNotes = await Notice.findAll({
+    include: Photo, raw: true,
+    order:[['cost', 'DESC']]
+  });
+  const allNotesPlusForm = allNotes.map(el => ({...el, 
+    name: (allForms.find(element => element.user_id === el.user_id)).name,
+    avatar: (allForms.find(element => element.user_id === el.user_id)).photo
+  }))
+  console.log(allNotesPlusForm);
+  res.json(allNotesPlusForm)
 })
 
 module.exports = router;

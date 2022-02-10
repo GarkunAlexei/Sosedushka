@@ -1,31 +1,38 @@
-import { Input, Space } from 'antd';
+import { Input, Select, Space } from 'antd';
 import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getFindAd } from '../../redux/actions/adAC';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFindAd, sortAdByIncCost, sortAdByDescCost, getSortAdByInc, getSortAdByDesc } from '../../redux/actions/adAC';
 import style from './style.module.css'
+
+const { Option } = Select;
 
 export const FindInput = () => {
   const dispatch = useDispatch();
-  const { Search } = Input;
+  // const notices = useSelector(state => state.ad)
+  const [input, setInput] = useState('');
 
+  const { Search } = Input;
   const onSearch = value => {
     if (input) {
       console.log(input);
       dispatch(getFindAd(input))
     }
   };
-  const [input, setInput] = useState('');
 
   const changeHandler = (e) => {
     setInput(e.target.value)
   }
 
-  // useEffect(() => {
-  //   if (input) {
-  //     dispatch(getFindAd(input))
-  //   }
-  // }, [input])
+  
+  // console.log('---------->', notices);
+
+  function handleChange(obj) {
+    if (obj.value === 'cheap') {
+      dispatch(getSortAdByInc());
+    } else {
+      dispatch(getSortAdByDesc());
+    }
+  }
 
   return (
     <div className={style.find_input}>
@@ -41,6 +48,17 @@ export const FindInput = () => {
           style={{ width: 420 }}
         />
       </Space>
+
+      <Select
+    labelInValue
+    defaultValue={{ value: 'sort' }}
+    style={{ width: 200 }}
+    onChange={handleChange}
+  >
+    <Option disabled value="sort">Сортировать по цене</Option>
+    <Option value="cheap">Дешевые</Option>
+    <Option value="exp">Дорогие</Option>
+  </Select>
     </div>
   );
 };
