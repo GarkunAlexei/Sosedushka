@@ -6,6 +6,7 @@ import { userLogout } from '../../redux/actions/userAC';
 import { ButtonNav } from './ButtonNav';
 
 function HeaderNav() {
+
   const user = useSelector(state => state.user)
 
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function HeaderNav() {
   return (
     <nav className={style.NavbarItems}>
 
-      <h1 className={style.navbar_logo}>Соседушка<i className='fa-solid fa-users'></i></h1>
+      <Link to={'/'}><h1 className={style.navbar_logo}>Соседушка<i className='fa-solid fa-users'></i></h1></Link>
 
       <ul className={style.nav_menu}>
 
@@ -39,7 +40,7 @@ function HeaderNav() {
             </Link>
 
             <li key="3">
-              <span className={style.nav_links} onClick={logoutHandler}>Выйти</span>
+              <ButtonNav onClick={logoutHandler}>Выход</ButtonNav>
             </li>
 
           </>
@@ -52,7 +53,7 @@ function HeaderNav() {
               </li>
             </Link>
 
-            <Link to={'/signup'}><ButtonNav>Регистация</ButtonNav></Link>
+            <Link to={'/signup'}><ButtonNav>Регистрация</ButtonNav></Link>
           </>
         }
 

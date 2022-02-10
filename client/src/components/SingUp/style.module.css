@@ -11,7 +11,7 @@
 } */
 
 .div_form {
-  /* margin-top: 100px; */
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -65,16 +65,6 @@ h1 {
   background: #fff !important;
   color: #6568F4 !important;
   transition: 250ms !important;
-}
-
-.button_google {
-
-}
-
-.google_login {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px !important;
 }
 
 .icon_sign {

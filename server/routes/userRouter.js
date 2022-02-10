@@ -2,6 +2,9 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const { User } = require('../db/models');
 
+require('dotenv').config();
+const { OAuth2Client } = require('google-auth-library');
+
 router.route('/check')
 .post((req, res) => {
     if(req.session.user){
@@ -48,8 +51,9 @@ router.route('/signin')
     }else{
         return res.sendStatus(500)
     }
-
 })
+
+
 
 router.route('/logout')
 .post((req, res) => {

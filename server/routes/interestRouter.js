@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Interest, Entries, User, Form } = require('../db/models')
 
 router.get('/', async(req, res) => {
-  try{
+  try {
     const profile = await Form.findOne({where: {user_id: req.session.user.id}})
     // console.log('profile----->', profile);
     const tempEntries = await Entries.findAll({where: {form_id: profile.id}})
@@ -21,9 +21,9 @@ router.get('/', async(req, res) => {
 }
 })
 router.post('/:id', async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
 
-  try{
+  try {
     const form = await Form.findOne({
       where: { user_id: req.session.user.id },
       include: Interest,
@@ -33,7 +33,6 @@ router.post('/:id', async (req, res) => {
     console.log(err)
     return res.sendStatus(500)
   }
-
 
   const formToReact = await Form.findOne({
     where: { user_id: req.session.user.id },

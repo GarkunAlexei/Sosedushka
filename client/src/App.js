@@ -19,7 +19,7 @@ function App() {
   }, [])
 
   return (
-    <Layout className="layout">
+    <Layout className={`layout layout_s`}>
       <HeaderNav />
       <ContentS />
       <FooterS/>

@@ -20,7 +20,7 @@ const { Content } = Layout;
 function ContentS() {
   
   return (
-    <Content style={{ padding: '0px 200px' }}>
+    <Content style={{ padding: '50px 200px' }}>
       <div className={style.site_layout_content}>
 
         <Routes>
@@ -29,16 +29,19 @@ function ContentS() {
             <MainPage />
           // </ProtectedAuth>
           } />
+
           <Route path="/signin" element={
           <AuthUser>
             <SingIn />
           </AuthUser>
           } />
+
           <Route path="/signup" element={
           <AuthUser>
             <SingUp/>
           </AuthUser>
-          } />
+          } /> 
+
           <Route path="/account" element={
           <ProtectedAuth>
             <FormAccount />
@@ -50,6 +53,7 @@ function ContentS() {
             <UserWrapper />
           </ProtectedAuth>
           } />
+
           <Route path="/notice/:id" element={
           <ProtectedAuth>
             <DetailPage />
