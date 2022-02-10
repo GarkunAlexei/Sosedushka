@@ -49,6 +49,20 @@ router.post('/:id', async (req, res) => {
   }
 })
 
+router.post('/edit/:id', async (req, res) => {
+  const { id } = req.params;
+  console.log(id, req.body);
+  try {
+    await Form.update(req.body, { where:{id: id}})
+    const newForm = await Form.findOne({where:{id}})
+    // console.log(newForm);
+    res.json({ newForm })
+  } catch (err) {
+    console.log(err)
+    res.sendStatus(500)
+  }
+})
+
 module.exports = router
 
 

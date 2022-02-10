@@ -27,31 +27,9 @@ export const UserDetail = () => {
           <h4>Бюджет: {userAnketa.user.budget} р </h4>
           <br></br> 
           <br></br>
-            <h4>Мои интересы:</h4>
+            <h4>{userAnketa.user.name} о своих интересах:</h4>
             <p>{userAnketa.interests.map(el => <Button>{el.interest}</Button>)}</p>
         </Col>
-        {/* <div>
-        <Title level={3}>{name}</Title>
-        <Image
-            width={200}
-            src={img}
-          />
-        </div>
-        <div>
-        <Title level={5}>
-          О себе
-        </Title>
-        <Text>
-          {about_me}
-        </Text>
-        <Title level={5}>
-          Контакты
-        </Title>
-        <Text>
-          {phone}
-        </Text>
-          <Button type="danger">Откликнуться</Button>
-        </div> */}
         </>
       }
     </Row>
