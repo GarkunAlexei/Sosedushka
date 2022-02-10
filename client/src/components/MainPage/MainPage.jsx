@@ -5,9 +5,14 @@ import { FindInput } from '../FindInput/FindInput';
 export const MainPage = () => {
   return (
     <>
-    <FindInput/>
-    <br/>
-    <CardList/>
+      <div>
+        <div>
+          <FindInput />
+        </div>
+        <div>
+          <CardList />
+        </div>
+      </div>
     </>
   );
 };

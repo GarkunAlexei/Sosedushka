@@ -23,7 +23,7 @@ export const FindInput = () => {
     setInput(e.target.value)
   }
 
-  
+
   // console.log('---------->', notices);
 
   function handleChange(obj) {
@@ -36,7 +36,22 @@ export const FindInput = () => {
 
   return (
     <div className={style.find_input}>
+
       <Space>
+
+        <Select
+          labelInValue
+          defaultValue={{ value: 'sort' }}
+          style={{ width: 230 }}
+          onChange={handleChange}
+          className={style.find_select}
+          size='large'
+        >
+          <Option disabled value="sort">Сортировать по цене</Option>
+          <Option value="cheap">Дешевые</Option>
+          <Option value="exp">Дорогие</Option>
+        </Select>
+
         <Search
           placeholder="Введите адрес или стоимость аренды"
           allowClear
@@ -46,19 +61,14 @@ export const FindInput = () => {
           onChange={changeHandler}
           onSearch={onSearch}
           style={{ width: 420 }}
-        />
+        >
+        </Search>
+
       </Space>
 
-      <Select
-    labelInValue
-    defaultValue={{ value: 'sort' }}
-    style={{ width: 200 }}
-    onChange={handleChange}
-  >
-    <Option disabled value="sort">Сортировать по цене</Option>
-    <Option value="cheap">Дешевые</Option>
-    <Option value="exp">Дорогие</Option>
-  </Select>
+      {/* <div className={style.div_select}>
+      </div> */}
+
     </div>
   );
 };

@@ -1,0 +1,68 @@
+.list_card {
+  margin-top: 25px;
+  /* border: 1px solid black; */
+  /* height: 100% !important; */
+}
+
+.item_card {
+  border: 1.5px solid #5b4efd !important;
+  border-bottom-color: #5b4efd !important;
+  border-radius: 5px;
+  height: 250px;
+  margin: 10px;
+  margin-top: 40px;
+  display: flex !important;
+  position: relative !important;
+  justify-content: space-between !important;
+  padding: 0px 5px !important;
+}
+
+.left_notice {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 210px !important;
+  width: 340px !important;
+  justify-content: space-between !important;
+  padding-left: 3px !important;
+  /* align-items: center !important; */
+  /* position: relative !important; */
+}
+
+.description_notice {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.image_notice {
+  /* width: 100px !important;
+  height: 100px !important; */
+  margin-right: 10px !important;
+}
+
+.user_info {
+  text-align: center;
+}
+
+.avatar {
+  position: absolute !important;
+  top: -13%;
+  left: 5%;
+  border: 1.5px solid #5b4efd;
+}
+
+.button_submit {
+  height: 35px !important;
+  padding: 0px 10px !important;
+  border-radius: 4px !important;
+  font-size: 12px !important;
+  color: #fff !important;
+  background-color: #5b4efd !important;
+}
+
+.button_submit:hover {
+  transition: all 0.3s ease-out !important;
+  background: #fff !important;
+  color: #6568F4 !important;
+  transition: 250ms !important;
+}

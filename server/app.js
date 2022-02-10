@@ -20,7 +20,7 @@ const map = new Map();// for ws
 const http = require('http');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+
 app.use(morgan('dev'));
 app.use(express.json());
 
