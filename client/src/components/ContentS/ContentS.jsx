@@ -65,7 +65,9 @@ function ContentS() {
             <UserWrapper />
           </ProtectedAuth>
           } />
-          <Route path="chat" element={Chat}/>
+
+          
+          <Route path="/chat" element={<Chat/>}/>
 
         </Routes>
 

@@ -15,8 +15,6 @@ const WebSocket = require('ws');
 
 const { OAuth2Client } = require('google-auth-library');
 
-const PORT = process.env.PORT ?? 3001;
-
 const map = new Map();// for ws
 const http = require('http');
 
