@@ -7,7 +7,7 @@ export const setMessage = (value) => {
   }
 }
 
-export const addMessage = (value) => (dispatch) => {
+// export const addMessage = (value) => (dispatch) => {
   
-  dispatch(setMessage(value))
-}
+//   dispatch(setMessage(value))
+// }

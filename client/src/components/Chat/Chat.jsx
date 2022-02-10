@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import style from './style.module.css'
 
 import { Button, Input } from 'antd';
-import { setMessage } from '../../redux/actions/wsAC';
+import { addMessage, setMessage } from '../../redux/actions/wsAC';
 import { useDispatch } from 'react-redux';
 
 
@@ -29,6 +29,8 @@ function Chat(props) {
 
   ws.onmessage = function (event) {
     //setMessages(prev => [...prev, event.data])
+    console.log(event.data);
+
     dispatch(setMessage(event.data))  
 
   };
@@ -63,7 +65,7 @@ function Chat(props) {
           onChange={(e) => setInput(e.target.value)}
           value={input}
           className="form-control"/>
-        <Button disabled={!input.length} onclick={submitHandler}>Отправить</Button>
+        <Button onClick={submitHandler}>Отправить</Button>
       </form>
     </div>
   </div>
