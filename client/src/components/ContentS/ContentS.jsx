@@ -4,27 +4,29 @@ import style from './style.module.css';
 import SingUp from '../SingUp/SingUp';
 import SingIn from '../SingIn/SingIn';
 import FormAccount from '../FormAccount/FormAccaunt';
-import AnnouncementCreate from '../AnnouncementCreate/AnnouncementCreate';
 import { MainPage } from '../MainPage/MainPage';
 import DetailPage from '../DetailPage/DetailPage';
 import UserWrapper from '../UserWrapper/UserWrapper';
 import { Routes, Route } from 'react-router-dom';
 import AuthUser from '../ProtectedAuth/AuthUser';
 import ProtectedAuth from '../ProtectedAuth/ProtectedAuth';
-import UserPage from '../UserPage/UserPage';
-import Interests from '../Interests/Interests';
 import Chat from '../Chat/Chat';
+import { useSelector } from 'react-redux';
 
 const { Content } = Layout;
 
 
 function ContentS() {
+
+  const user = useSelector(state => state.user)
   
   return (
     <Content style={{ padding: '50px 200px' }}>
-      <div className={style.site_layout_content}>
+
+      <div className={ !!user ? style.site_layout_content : style.site_layout_clear}>
 
         <Routes>
+
         <Route path="/" element={
           // <ProtectedAuth>
             <MainPage />
@@ -66,12 +68,12 @@ function ContentS() {
           </ProtectedAuth>
           } />
 
-          
           <Route path="/chat" element={<Chat/>}/>
 
         </Routes>
 
       </div>
+
     </Content>
   )
 }
