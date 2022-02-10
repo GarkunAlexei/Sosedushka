@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Layout } from 'antd';
 import style from './style.module.css';
 import SingUp from '../SingUp/SingUp';
@@ -10,6 +10,7 @@ import UserWrapper from '../UserWrapper/UserWrapper';
 import { Routes, Route } from 'react-router-dom';
 import AuthUser from '../ProtectedAuth/AuthUser';
 import ProtectedAuth from '../ProtectedAuth/ProtectedAuth';
+
 import Chat from '../Chat/Chat';
 import { useSelector } from 'react-redux';
 

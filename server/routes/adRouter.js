@@ -29,7 +29,7 @@ router.post('/', async(req, res) => {
 router.get('/', async (req, res) => {
   try {
     const allForms = await Form.findAll();
-    const allNotes = await Notice.findAll({include: Photo, raw: true});
+    const allNotes = await Notice.findAll({include: Photo, raw: true, order:[['createdAt', 'DESC']]});
 
     const allNotesPlusForm = allNotes.map(el => ({...el, 
       name: (allForms.find(element => element.user_id === el.user_id)).name,

@@ -1,4 +1,4 @@
-import { ADD_FORMS } from "../types/formsTypes"
+import { ADD_FORMS, CHANGE_FORM } from "../types/formsTypes"
 import axios from "axios"
 // import { DELETE_INTEREST } from "../types/interestTypes"
 
@@ -32,6 +32,19 @@ export const nullForm = (value) => {
 
 export const nullSetForm = () => async (dispatch) => {
   dispatch(nullForm())
+}
+
+export const setChange = (data) => {
+  return {
+    type: ADD_FORMS,
+    payload: data,
+  }
+}
+
+export const changeForm = (data, id) => async (dispatch) => {
+  // console.log(data, id);
+  const result = await axios.post(`/profile/edit/${id}`, data)
+  dispatch(setChange(result.data.newForm))
 }
 
 // export const delInterst = () => {

@@ -66,8 +66,8 @@ export const CardList = () => {
               </div>
 
               <div className={style.description}>
-                <p>{`Адрес: ${item.address.slice(0, 50)}...`}</p>
-                <p>{`Описание: ${item.description}`}</p>
+                <p>{`Адрес: ${item.address.slice(8, 40)}...`}</p>
+                <p>{`Описание: ${(item.description).slice(0, 75)}...`}</p>
                 <p>{item.cost ? `Стоимость: ${item.cost} ₽` : ''}</p>
               </div>
 
