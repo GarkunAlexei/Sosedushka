@@ -36,7 +36,7 @@ const contentList = {
 
 function UserWrapper(props) {
 
-  const [activeTabKey1, setActiveTabKey1] = useState('profil');
+  const [activeTabKey1, setActiveTabKey1] = useState('profilRedact');
 
   const onTab1Change = key => {
     setActiveTabKey1(key);

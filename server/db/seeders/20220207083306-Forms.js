@@ -4,17 +4,17 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     
       await queryInterface.bulkInsert('Forms', [
-        { 
-          name: 'Владимир Владимирович',
-          phone: '555-55-55',
-          birthday: new Date(1934, 11, 17), 
-          photo:'https://e-ipar.ru/wp-content/uploads/2020/04/image1-28.jpg',
-          user_id: 1,
-          about_me: 'Я ответственный, проактивный, стрессоустойчивый, коммуникабельный, честный. Мои сильные стороны — хорошие управленческие и лидерские навыки, клиентоориентированность, системное мышление, позитивный настрой. Не пью, не курю, есть права категории B',
-          budget: '90000',
-          gender_id: 1,
-          createdAt: new Date(), updatedAt: new Date() 
-        },
+        // { 
+        //   name: 'Алексей Васильевич',
+        //   phone: '555-55-55',
+        //   birthday: new Date(1993, 07, 27), 
+        //   photo:'https://e-ipar.ru/wp-content/uploads/2020/04/image1-28.jpg',
+        //   user_id: 1,
+        //   about_me: 'Я ответственный, проактивный, стрессоустойчивый, коммуникабельный, честный. Мои сильные стороны — хорошие управленческие и лидерские навыки, клиентоориентированность, системное мышление, позитивный настрой. Не пью, не курю, есть права категории B',
+        //   budget: '90000',
+        //   gender_id: 1,
+        //   createdAt: new Date(), updatedAt: new Date() 
+        // },
         { 
           name: 'Иван Николаевич',
           phone: '555-55-55',
