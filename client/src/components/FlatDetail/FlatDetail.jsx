@@ -27,7 +27,6 @@ export const FlatDetail = () => {
     <>
       {userAnketa &&
         <>
-
           <div className={style.wrapper}>
 
             <div className={style.carousel}>
@@ -63,6 +62,7 @@ export const FlatDetail = () => {
           <div>
             <YMapComponentShow coordsType={coordsType} address={userAnketa.note.address}/>
           </div>
+
         </>
       }
     </>

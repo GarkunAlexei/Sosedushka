@@ -24,7 +24,7 @@ export const UserDetail = () => {
           <h4>О себе:</h4>
           <p>{userAnketa.user.about_me}</p>
           <h4>Контакты: {userAnketa.user.phone}</h4>
-          <h4>Бюджет: {userAnketa.user.budget} р </h4>
+          {/* <h4>Бюджет: {userAnketa.user.budget} р </h4> */}
           <br></br> 
           <br></br>
             <h4>{userAnketa.user.name} о своих интересах:</h4>
