@@ -3,6 +3,8 @@
   padding: 24px;
   background: #fff;
   margin-top: 50px;
+  border: 1px solid #5b4efd !important;
+  border-radius: 5px !important;
   /* height: 100%; */
   /* border: 1px solid #5b4efd; */
   /* background-color: #b2b2b2; */

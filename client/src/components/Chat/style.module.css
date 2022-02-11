@@ -1,9 +1,10 @@
 .chat {
   display: flex;
   height: 500px;
-  border: 1px solid rgba(159, 183, 197, 0.2);
+  /* border: 1px solid rgba(159, 183, 197) !important; */
   border-radius: 8px;
   overflow: hidden;
+  border: 1px solid #5b4efd !important;
 }
 
 .chatUsers {
@@ -70,4 +71,24 @@
 .chat-messages form textarea {
   width: 100%;
   margin-bottom: 10px;
+}
+
+.form_chat {
+  display: flex !important;
+}
+
+.button_submit {
+  height: 40px !important;
+  padding: 0px 20px !important;
+  border-radius: 4px !important;
+  font-size: 15px !important;
+  color: #fff;
+  background-color: #5b4efd !important;
+}
+
+.button_submit:hover {
+  transition: all 0.3s ease-out !important;
+  background: #fff !important;
+  color: #6568F4 !important;
+  transition: 250ms !important;
 }
