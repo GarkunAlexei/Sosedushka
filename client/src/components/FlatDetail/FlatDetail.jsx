@@ -28,16 +28,16 @@ export const FlatDetail = () => {
         <div>
         <Space direction="vertical">
         <Title level={5}>
-          Описание квартиры
+          <h2>Описание квартиры</h2>
         </Title>
           <Text>
             {userAnketa.note.description}
         </Text>
         <Title level={5}>
-          Строимость
+          <h2>Строимость:</h2>
         </Title>
           <Text>
-          {userAnketa.note.cost}
+          <h3>{`${userAnketa.note.cost} рублей`}</h3>
         </Text>
         </Space>
         <Button type="danger">Откликнуться</Button>
