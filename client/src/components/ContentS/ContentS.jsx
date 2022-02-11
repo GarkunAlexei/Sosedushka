@@ -13,6 +13,8 @@ import ProtectedAuth from '../ProtectedAuth/ProtectedAuth';
 
 import Chat from '../Chat/Chat';
 import { useSelector } from 'react-redux';
+import FormAccountChange from '../FormAccauntChange/FormAccauntChange';
+import FormAccountCreate from '../FormAccauntCreate/FormAcauntCreate';
 
 const { Content } = Layout;
 
@@ -67,6 +69,12 @@ function ContentS() {
           <Route path="/userpage" element={
           <ProtectedAuth>
             <UserWrapper />
+          </ProtectedAuth>
+          } />
+
+          <Route path="/formCreate" element={
+          <ProtectedAuth>
+            <FormAccountCreate/>
           </ProtectedAuth>
           } />
 

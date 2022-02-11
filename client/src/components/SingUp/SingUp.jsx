@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Input, Button, } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getUser } from '../../redux/actions/userAC';
+import { checkUser, getUser } from '../../redux/actions/userAC';
 import style from './style.module.css';
 
 
@@ -19,7 +19,10 @@ function SingUp(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(getUser(inputs))
-    setInputs({ login: '', email: '', password: '', role_id: 2 })
+    setTimeout(() => {
+      dispatch(checkUser())
+    }, 100);
+
     navigate('/profile')
   };
 
