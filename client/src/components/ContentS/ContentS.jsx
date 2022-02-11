@@ -24,6 +24,7 @@ function ContentS() {
   return (
     <Content style={{ padding: '50px 200px' }}>
 
+      {/* <div className={ !!user ? style.site_layout_content : style.site_layout_clear}> */}
       <div className={ !!user ? style.site_layout_content : style.site_layout_clear}>
 
         <Routes>

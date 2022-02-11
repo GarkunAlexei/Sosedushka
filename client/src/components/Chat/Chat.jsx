@@ -16,11 +16,11 @@ function Chat(props) {
 
 
   const ws = useSelector(state => state.ws)
-  const messages = useSelector(state => state.messages) 
+  const messages = useSelector(state => state.messages)
   const name = useSelector(state => state.form)
 
   console.log(messages)
-  
+
   console.log(name)
 
   ws.onopen = function (e) {
@@ -31,15 +31,15 @@ function Chat(props) {
     //setMessages(prev => [...prev, event.data])
     console.log(event.data);
 
-    dispatch(setMessage(event.data))  
+    dispatch(setMessage(event.data))
 
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
-      console.log(input);
-      ws.send(input)
-      setInput('')
+    console.log(input);
+    ws.send(input)
+    setInput('')
   }
   // React.useEffect(() => {
   //   messagesRef.current.scrollTo(0, 99999);
@@ -47,29 +47,35 @@ function Chat(props) {
 
   return (
     <>
-    <div className={style.chat}>
-    
-    <div className={style.chatMessages}>
-      <div className={style.messages}>
-        {messages.map((el, index) => (
-          <div className={style.message} key={index}>
-            <p>{el}</p>
-            <div>
-              <span>user</span>
-            </div>
+      <div className={style.chat}>
+
+        <div className={style.chatMessages}>
+
+          <div className={style.messages}>
+            {messages.map((el, index) => (
+              <div className={style.message} key={index}>
+                <p>{el}</p>
+                <div>
+                  <span>user</span>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+
+          <form onSubmit={submitHandler} className={style.form_chat}>
+
+            <Input
+              onChange={(e) => setInput(e.target.value)}
+              value={input}
+              className="form-control" />
+
+            <Button className={style.button_submit} size="large" onClick={submitHandler}>Отправить</Button>
+
+          </form>
+        </div>
       </div>
-      <form onSubmit={submitHandler} >
-        <Input
-          onChange={(e) => setInput(e.target.value)}
-          value={input}
-          className="form-control"/>
-        <Button onClick={submitHandler}>Отправить</Button>
-      </form>
-    </div>
-  </div>
-  </>
+
+    </>
   );
 }
 

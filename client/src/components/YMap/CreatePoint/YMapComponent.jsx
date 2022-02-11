@@ -4,7 +4,7 @@ import Geocode from "react-geocode";
 
 const mapState = {
   center: [55.753994, 37.622093],
-  zoom: 15,
+  zoom: 10,
 };
 
 function YMapComponent({ setInput }) {
@@ -74,7 +74,7 @@ function YMapComponent({ setInput }) {
         <Map 
           defaultState={{ center: [55.75, 37.57], zoom: 10 }}
           width={450}
-          height={300}
+          height={280}
           // // instanceRef={ref => (this.Map = ref)}
           // modules={["geolocation", "geocode"]}
           // // onLoad={ymaps => {

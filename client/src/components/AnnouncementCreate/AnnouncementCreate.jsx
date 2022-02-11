@@ -121,7 +121,7 @@ function AnnouncementCreate() {
         <Form.Item label="Фото:">
 
 
-          <Button type="primary" onClick={showModal}>
+          <Button className={style.button_submit} type="primary" onClick={showModal}>
             Загрузить фото
           </Button> <span></span>
 
@@ -139,7 +139,7 @@ function AnnouncementCreate() {
           <YMapComponent setInput={setInput} />
         </Form.Item>
         <Form.Item label={' '}>
-          <Button type="primary" onClick={submitHandler}>Подать объявление</Button>
+          <Button className={style.button_submit} type="primary" onClick={submitHandler}>Подать объявление</Button>
         </Form.Item>
       </Form>
     </>

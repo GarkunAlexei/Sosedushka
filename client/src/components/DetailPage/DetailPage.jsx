@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { getOneFlatUser, nullFlatUser } from '../../redux/actions/flatUserAC';
 import { getForm, nullSetForm } from '../../redux/actions/formAC';
 import Chat from '../Chat/Chat';
+import style from './style.module.css';
 
 const tabList = [
   {
@@ -25,25 +26,27 @@ const tabList = [
 ];
 
 const contentList = {
-  Announcement: <FlatDetail/>,
-  Neighbor: <UserDetail/>,
-  Chat: <Chat/>,
+  Announcement: <FlatDetail />,
+  Neighbor: <UserDetail />,
+  Chat: <Chat />,
 };
 
 function DetailPage(props) {
+
+  const [activeTabKey1, setActiveTabKey1] = useState('Announcement');
+
   const params = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-      dispatch(getOneFlatUser(params.id))
-      dispatch(getForm())
-      return () => {
-        dispatch(nullFlatUser());
-        dispatch(nullSetForm())
-      }
+    dispatch(getOneFlatUser(params.id))
+    dispatch(getForm())
+    return () => {
+      dispatch(nullFlatUser());
+      dispatch(nullSetForm())
+    }
   }, [])
 
-  const [activeTabKey1, setActiveTabKey1] = useState('Announcement');
 
   const onTab1Change = key => {
     setActiveTabKey1(key);
@@ -52,15 +55,16 @@ function DetailPage(props) {
     <>
       <Card
         style={{ width: '100%', height: '100vh' }}
-        title="Личный кабинет"
+        title="Подробнее"
         tabList={tabList}
         activeTabKey={activeTabKey1}
         onTabChange={key => {
           onTab1Change(key);
         }}
+        className={style.card}
       >
         {contentList[activeTabKey1]}
-      
+
       </Card>
     </>
   );
