@@ -9,11 +9,11 @@ router.post('/', async(req, res) => {
   // console.log('USER SESSION ===>', req.session.user)
   const user_id = req.session.user.id;
   const { address, description, cost, coords, img } = req.body
-  console.log(req.body);
+  // console.log(req.body);
 
   try {
     const newNotice = await Notice.create({ address, description, cost, coords, user_id })
-    console.log('newNotice =====>', newNotice);
+    // console.log('newNotice =====>', newNotice);
     const notice_id = newNotice.id;
     const photo = img;
     const newNoticePhoto = await Photo.create({ notice_id, photo })
@@ -35,7 +35,7 @@ router.get('/', async (req, res) => {
       name: (allForms.find(element => element.user_id === el.user_id)).name,
       avatar: (allForms.find(element => element.user_id === el.user_id)).photo
     }))
-    console.log(allNotesPlusForm);
+    // console.log(allNotesPlusForm);
     res.json(allNotesPlusForm)
 
   } catch (error) {
@@ -132,7 +132,7 @@ router.post('/desc', async(req, res) => {
     name: (allForms.find(element => element.user_id === el.user_id)).name,
     avatar: (allForms.find(element => element.user_id === el.user_id)).photo
   }))
-  console.log(allNotesPlusForm);
+  // console.log(allNotesPlusForm);
   res.json(allNotesPlusForm)
 })
 

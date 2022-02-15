@@ -108,7 +108,7 @@ wss.on('connection', function (ws, request) {
     }
   });
 });
-// WS CLOSED
+
 
 server.listen(PORT, () => {
     console.log('server start on port ', PORT)
