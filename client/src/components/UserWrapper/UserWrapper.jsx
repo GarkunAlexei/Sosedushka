@@ -4,6 +4,7 @@ import UserPage from '../UserPage/UserPage';
 import AnnouncementCreate from '../AnnouncementCreate/AnnouncementCreate'
 import FormAccount from '../FormAccount/FormAccaunt';
 import Interests from '../Interests/Interests';
+import Chat from '../Chat/Chat';
 
 
 const tabList = [
@@ -23,14 +24,18 @@ const tabList = [
     key: 'interests',
     tab: 'Мои интересы',
   },
+  {
+    key: 'chat',
+    tab: 'Чат',
+  },
 ];
 
 const contentList = {
   profil: <UserPage/>,
   profilRedact: <FormAccount/>,
   ad: <AnnouncementCreate/>,
-  interests: <Interests/>
-
+  interests: <Interests/>,
+  chat: <Chat/>
 };
 
 

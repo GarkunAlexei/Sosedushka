@@ -7,7 +7,7 @@ import { blue } from '@ant-design/colors';
 import { Link } from 'react-router-dom';
 
 
-
+//commit final
 export const CardFlat = ({id, address, cost, img }) => {
 
 

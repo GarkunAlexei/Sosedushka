@@ -41,6 +41,9 @@ function Chat(props) {
     ws.send(input)
     setInput('')
   }
+
+  let date = new Date();
+
   // React.useEffect(() => {
   //   messagesRef.current.scrollTo(0, 99999);
   // }, [messages]);
@@ -56,7 +59,7 @@ function Chat(props) {
               <div className={style.message} key={index}>
                 <p>{el}</p>
                 <div>
-                  <span>user</span>
+                  <span>{`${date.toLocaleString()}`}</span>
                 </div>
               </div>
             ))}
