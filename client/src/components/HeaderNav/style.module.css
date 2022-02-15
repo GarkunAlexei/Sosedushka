@@ -21,7 +21,7 @@
 } */
 
 .NavbarItems {
-  overflow: hidden;
+  overflow: hidden !important;
   /* position: fixed; */
   position: fixed;
   top: 50;
@@ -36,11 +36,11 @@
 }
 
 .navbar_logo {
-  color: #fff;
-  justify-self: start;
+  color: #fff !important;
+  justify-self: start !important;
   margin-bottom: 0;
   margin-left: 20px;
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .nav_menu {
@@ -57,13 +57,17 @@
 }
 
 .nav_links {
-  color: white;
+  color: white !important;
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem !important;
 }
 
 .nav_links:hover {
   background-color: #6d76f7;
   border-radius: 4px;
   transition: all 0.2s ease-out;
+}
+
+.nav_links {
+  text-decoration: none !important;
 }
