@@ -1,0 +1,11 @@
+.find_input {
+  display: flex;
+  justify-content:center;
+}
+
+.find_select {
+  /* height: 100px !important; */
+}
+/* .div_select {
+  height: 100px;
+} */

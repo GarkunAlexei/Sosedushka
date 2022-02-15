@@ -1,14 +1,37 @@
 import axios from 'axios'; 
-import { GET_USERS } from '../types/userTypes';
+import { SET_USER } from '../types/userTypes';
 
 /////  добавление в стор из БД
-export const setUsers = (value) => { 
+export const setUser = (value) => { 
     return { 
-        type: GET_USERS, 
+        type: SET_USER, 
         payload: value 
     } 
 } 
-export const getUsers = () => async(dispatch) => { 
-    const response = await axios('/users'); 
-    dispatch(setUsers(response.data.allUsers)) 
+
+export const getUser = (input) => async(dispatch) => { 
+
+    const response = await axios.post('/user/signup', input); 
+
+    dispatch(setUser(response.data.user)) 
+}
+
+export const signInUser = ( input ) => async ( dispatch ) => {
+  const response = await axios.post('/user/signin', input)
+  dispatch(setUser(response.data.user))
+}
+
+export const userLogout = () => async (dispatch) => {
+  await axios.post('/user/logout')
+  dispatch(setUser(null))
+}
+
+export const checkUser = () => async (dispatch) => {
+  const res = await axios.post('/user/check')
+
+  if(res.statusText){
+      dispatch(setUser(res.data.user))
+  } else {
+      dispatch(setUser(null))
+  }
 }

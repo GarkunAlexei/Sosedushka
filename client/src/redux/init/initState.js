@@ -1,6 +1,11 @@
 export const initState = {
-  users: [],
-  // roles: [],
-  // user: null,
+  user: null,
+  roles: 2,
+  interest: [],
   // comments: []
+  ad: [],
+  flatUser: null,
+  form: [],
+  ws: new WebSocket("ws://localhost:3001"), 
+  messages: [],
 }
